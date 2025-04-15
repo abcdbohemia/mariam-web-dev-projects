@@ -1,0 +1,54 @@
+.projects-container {
+    padding: 30px 40px;
+    background-color:  #f0f0f0;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 0 auto; 
+    }
+    
+    .projects-container h2{
+    color: rgb(190, 219, 146);
+    margin-bottom: 20px;
+    text-align: center;    
+    }
+    
+    .projects-highlight {
+        background-color: rgb(84, 114, 126);
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgb(190, 219, 146);
+        padding: 15px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .projects-highlight h3 {
+        color: #e7ec89;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    
+    .projects-highlight img, 
+    .projects-highlight video {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    
+    .projects-highlight p {
+    color:rgb(190, 232, 106);
+    margin-bottom: 15px;
+    }
+    
+    .projects-highlight a {
+        color: #81a7ff;;
+        text-decoration: none;
+        border-bottom: 1px solid #007bff;
+        padding-bottom: 2px;
+    }
+    
+    .projects-highlight a:hover {
+        color: #afb8f5;
+        border-bottom-color: #afb8f5
+    
+    }
