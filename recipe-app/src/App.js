@@ -1,7 +1,13 @@
+import React from "react"
 import logo from './logo.svg';
 import './App.css';
+import SearchBar from './components/SearchBar';
 
 function App() {
+  const handleSearch = (searchTerm) => 
+    {console.log('Search term from SearchBar:', searchTerm);
+      //in the next steps you will use this searchTerm to call your API
+    };
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +23,7 @@ function App() {
         >
           Learn React
         </a>
+      <SearchBar onSearch={handleSearch} />
       </header>
     </div>
   );
