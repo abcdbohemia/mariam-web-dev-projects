@@ -1,13 +1,9 @@
 import React from "react";
 import './RecipeCard.css';
 
-function RecipeCard({recipe}) {
-    const handleViewDetailsClick = () => 
-{
-//We need to communicate thei recipe to the app component 
-console.log (`View details clicked for: ${recipe.title}`);
-//For now, lets just log the title when clicked
-//In the next steps we'll pass a function down from App to handle this.
+function RecipeCard({recipe, onViewDetails}) {
+    const handleViewDetailsClick = () => {
+        onViewDetails(recipe.id); //Call the function prop and pass the recipe ID
 };
 
     return (
@@ -16,14 +12,14 @@ console.log (`View details clicked for: ${recipe.title}`);
             <h3>{recipe.title}</h3>
             <p>{recipe.description}</p>
             {recipe.ingredients && (
-                <div className="ingredients">
+                <div className="recipe-ingredients">
                     <strong>Ingredients:</strong>
                     <ul>
                         {recipe.ingredients.slice(0,3).map((ingredient, index) => (
                          <li key={index}> {ingredient} </li>
                                  ))}
-                        {recipe.ingredients.length > 3 && <li>...and more</li>}
                     </ul>
+                        {recipe.ingredients.length > 3 && <li>...and more</li>}
                 </div>
             )}
         </div>
