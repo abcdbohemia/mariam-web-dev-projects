@@ -1,0 +1,28 @@
+.recipe-details {
+    background-color: blue;
+}
+
+.recipe-details h2 {
+    color:brown;
+}
+
+.recipe-details img {
+    max-width: 100%; 
+    height: auto; 
+    margin-bottom: 15px;
+}
+.recipe-details h3 {
+    color:aquamarine;
+}
+
+.recipe-details ul {
+    color:black;
+}
+
+.recipe-details li {
+    color: yellow;
+}
+
+.recipe-details p {
+    color: red;
+}
