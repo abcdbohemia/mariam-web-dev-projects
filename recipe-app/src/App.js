@@ -11,7 +11,7 @@ function App() {
   import('./data/recipes.json').then(data => {
     setRecipes(data.default);
   })
-  .catch(error => {console.error('Error loading reciipes:', error);
+  .catch(error => {console.error('Error loading recipes:', error);
   });
   }, []);// empty array to indicate to run once after initial load
 
