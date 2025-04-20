@@ -61,8 +61,15 @@ li {
     color: rgb(86, 118, 145);
     
 }
+ol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 ol li {
     text-align: left;
+    width: 100%;
     color: rgb(86, 118, 145);
+    padding-right: 20px;
 }
