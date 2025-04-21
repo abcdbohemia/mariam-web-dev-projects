@@ -50,7 +50,6 @@
     font-size: 1em;
     color:rgb(47, 111, 15);
     padding: 5px 0; /*what is what here?*/
-    border-bottom: 1px solid #6ee0e8;
 }
 
 .recipe-card ul li:last-child {

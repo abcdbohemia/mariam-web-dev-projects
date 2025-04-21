@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RecipeList from './components/RecipeList';
-import RecipeDetails from './components/RecipeDetails';
 import SearchBar from './components/SearchBar';
+import RecipeDetailsModal from './components/RecipeDetailsModal';
 import './App.css';
 
 function App() {
@@ -9,56 +9,56 @@ function App() {
   const [selectedRecipeId, setSelectedRecipeId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
  
   useEffect(() => {
-  import('./data/recipes.json').then(data => {
+  import('./data/recipes.json').then((data) => {
     setRecipes(data.default);
     setFilteredRecipes(data.default); //initialize filtered recipes with all recipes
   })
-  .catch(error => {console.error('Error loading recipes:', error);
-  });
+  .catch(error => 
+    console.error('Error loading recipes:', error));
   }, []);// empty array to indicate to run once after initial load
 
-  //This function is called when RecipeCard is clicked, it taked ID of
-  //the clicked recipe and updates the selectedRecipeId state
-  const handleRecipeClick = (id) => { 
-    setSelectedRecipeId(id);
-  };
-
-  const handleCloseDetails = () => {
-    setSelectedRecipeId(null); //Reset the selected recipe ID to hide details
-  }; 
-
-  //This line finds the full recipe object from the recipes array whose ID matches the 
-  // 'selectedRecipeId' in state
-  const selectedRecipe = recipes.find((recipe) => 
-    recipe.id === selectedRecipeId);
-
-  //Function to handle search term changes from the SearchBar
+  useEffect(() => {  
   const handleSearch =(term) => {
     setSearchTerm(term);
-    if (recipes && recipes.length > 0) {
-    const filtered= recipes.filter((recipe) => {
-      const titleMatch = recipe.title.toLowerCase().includes(term.toLowerCase());
-      const ingredientsMatch = recipe.ingredients.some((ingredient) =>
+    if (term) {
+      const filtered = recipes.filter(recipe =>
+        recipe.title.toLowerCase().includes(term.toLowerCase()) || 
+        recipe.ingredients.some(ingredient =>
       ingredient.toLowerCase().includes(term.toLowerCase())
-      );
-      return titleMatch || ingredientsMatch;
-    });
-   setFilteredRecipes(filtered);  
-    } else {setFilteredRecipes([]);
-      console.warn("handleSearch called before recipes data was loaded.")
+      )
+    );
+    setFilteredRecipes(filtered);
+    } else {
+    setFilteredRecipes(recipes);
     }
   };
+  handleSearch(searchTerm); //call handleSearch on SearchTerm change
+  }, [searchTerm, recipes]);
 
-  return (
+  const handleRecipeClick = (id) => { 
+    setSelectedRecipeId(id);
+    setIsModalOpen(true); //open the modal when a recipe is clicked
+  };
+
+  const handleCloseModal = () => {
+    setSelectedRecipeId(null);
+    setIsModalOpen(false); //close the modal
+  }; 
+
+  const selectedRecipe = recipes.find((recipe) => recipe.id === selectedRecipeId);
+    return (
     <div className="app">
       <h1> My Recipe App</h1>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={setSearchTerm} />
       <RecipeList recipes={filteredRecipes} onRecipeClick={handleRecipeClick} />
-      {selectedRecipe && <RecipeDetails recipe={selectedRecipe} onClose={handleCloseDetails} />}
+      { isModalOpen && selectedRecipe && ( 
+        <RecipeDetailsModal recipe={selectedRecipe} onClose={handleCloseModal} />
+      )}
     </div>
-  );
+    );
 }
 
 export default App;

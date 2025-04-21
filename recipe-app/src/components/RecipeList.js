@@ -1,12 +1,14 @@
 import React from 'react';
 import RecipeCard from './RecipeCard';
-import './RecipeList.css'; // well create this later
+import './RecipeList.css';
 
-function RecipeList({ recipes, onRecipeClick }) {
+function RecipeList({ recipes, onRecipeClick}) {
+
     return(
         <div className="recipe-list">
             {recipes.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} onRecipeClick={onRecipeClick} />
+                <RecipeCard key={recipe.id} recipe={recipe} onClick={() =>
+                onRecipeClick(recipe.id)} /> //pass the recipe ID
             ))}
         </div>
     );
