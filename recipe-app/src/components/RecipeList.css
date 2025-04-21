@@ -1,5 +1,12 @@
 .recipe-list {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
     text-align: center;
     align-items: center;
     margin: 0 auto;
+    overflow-x: auto;
+    padding: 20px;
+    justify-content: center;
+    align-items: flex-start;
 }

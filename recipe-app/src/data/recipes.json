@@ -37,7 +37,7 @@
         "image": "/images/stir-fry.jpg" 
       },
     { "id": 4, 
-      "title": "Blueberry pancakes", 
+      "title": "Blueberry Pancakes", 
       "description": "Fluffy pancakes with fresh blueberries.", 
       "ingredients": ["flour", "milk", "eggs", "blueberries"], 
       "instructions": ["Mix the milk and vinegar and let it sit for a minute or two (you’re making “buttermilk” here).", 

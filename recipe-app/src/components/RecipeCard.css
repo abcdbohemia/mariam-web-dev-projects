@@ -1,5 +1,7 @@
 .recipe-card {
-    background-color: rgb(139, 212, 168);
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(40, 233, 130, 0.5);
     border: 1px solid rgb(128, 255, 0);
     border-radius: 8px;
     margin-bottom: 20px;
@@ -9,6 +11,8 @@
     max-width: 400px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
+    height: 570px;
+    position: relative;
 }
 
 .recipe-card:hover {
@@ -19,7 +23,7 @@
     font-size: 1.5em;
     margin-top: 0;
     margin-bottom: 10px;
-    color: rgb(23, 56, 142);
+    color: rgb(134, 247, 241);
     text-align: center;
 }
 
@@ -28,9 +32,14 @@
     height: 300px;
     object-fit: cover;
     border-radius: 4px;
-    margin-bottom: 10px;
+    margin-top: 0;
+    padding-top: 0;
     display: block; /* this is to prevent 
     extra space below the image*/
+    object-position: top center;
+    position: absolute;
+    top: 100px;
+    left:0;
 }
 
 .recipe-card h4 {
@@ -38,18 +47,28 @@
     color:rgb(134, 247, 241);
     margin-top: 15px;
     margin-bottom: 5px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 400px;
 }
 
 .recipe-card ul {
     list-style: none;
-    padding: 0; /* this centers the list*/
+    padding: 0; /* removes default list styling.*/
     margin-bottom:  10px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 420px;
 }
 
 .recipe-card ul li {
     font-size: 1em;
-    color:rgb(47, 111, 15);
-    padding: 5px 0; /*what is what here?*/
+    color:rgb(50, 27, 202);
+    padding: 5px 0; /*adds 5px of padding to top and bottom*/
+    align-items: center;
+    white-space: nowrap;
 }
 
 .recipe-card ul li:last-child {

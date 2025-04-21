@@ -98,6 +98,7 @@
     list-style: decimal;
     margin-left: 20px;
     padding-left: 0;
+    text-align: left;
 }
 
 .modal-content ol li {
