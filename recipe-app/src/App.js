@@ -12,30 +12,30 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
  
   useEffect(() => {
-  import('./data/recipes.json').then((data) => {
-    setRecipes(data.default);
-    setFilteredRecipes(data.default); //initialize filtered recipes with all recipes
-  })
-  .catch(error => 
-    console.error('Error loading recipes:', error));
-  }, []);// empty array to indicate to run once after initial load
+    import('./data/recipes.json').then((data) => {
+      setRecipes(data.default);
+      setFilteredRecipes(data.default); //initialize filtered recipes with all recipes
+    }).catch((error) => {
+    console.error('Error loading recipes:', error);
+    });
+  }, []);// empty dependency array to run only once after initial load
 
   useEffect(() => {  
-  const handleSearch =(term) => {
-    setSearchTerm(term);
-    if (term) {
-      const filtered = recipes.filter(recipe =>
-        recipe.title.toLowerCase().includes(term.toLowerCase()) || 
-        recipe.ingredients.some(ingredient =>
-      ingredient.toLowerCase().includes(term.toLowerCase())
-      )
-    );
-    setFilteredRecipes(filtered);
-    } else {
-    setFilteredRecipes(recipes);
-    }
-  };
-  handleSearch(searchTerm); //call handleSearch on SearchTerm change
+    const handleSearch = (term) => {
+      setSearchTerm(term);
+      if (term) {
+        const filtered = recipes.filter(recipe =>
+          recipe.title.toLowerCase().includes(term.toLowerCase()) || 
+          recipe.ingredients.some(ingredient =>
+            ingredient.toLowerCase().includes(term.toLowerCase())
+          )
+        );
+      setFilteredRecipes(filtered);
+      } else {
+      setFilteredRecipes(recipes);
+      }
+    };
+    handleSearch(searchTerm); // function call  on SearchTerm change 
   }, [searchTerm, recipes]);
 
   const handleRecipeClick = (id) => { 
@@ -49,7 +49,9 @@ function App() {
   }; 
 
   const selectedRecipe = recipes.find((recipe) => recipe.id === selectedRecipeId);
-    return (
+    //this is a variable not a funtion
+  
+  return (
     <div className="app">
       <h1> My Recipe App</h1>
       <SearchBar onSearch={setSearchTerm} />

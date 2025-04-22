@@ -3,7 +3,6 @@ import RecipeCard from './RecipeCard';
 import './RecipeList.css';
 
 function RecipeList({ recipes, onRecipeClick}) {
-
     return(
         <div className="recipe-list">
             {recipes.map((recipe) => (

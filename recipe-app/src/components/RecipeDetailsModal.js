@@ -8,7 +8,7 @@ function RecipeDetailsModal ({recipe, onClose}) {
 
     return (
         <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content onClick={(e) => e.stopPropagation()}">
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="close-button" onClick={onClose}>X</button>
                 <h2>{recipe.title}</h2>
                 {recipe.image && <img src={recipe.image} alt={recipe.title} />}
