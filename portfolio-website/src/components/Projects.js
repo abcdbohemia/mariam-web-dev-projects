@@ -5,6 +5,8 @@ import paletteImage from '../assets/palette.png';
 import paletteVideo from '../assets/palette.mp4';
 import quizImage from '../assets/quiz.png';
 import quizVideo from '../assets/quiz.mp4';
+import recipeImage from '../assets/recipe.png';
+import recipeVideo from '../assets/recipe.mp4';
 
 import './Projects.css';
 
@@ -37,6 +39,15 @@ function Projects() {
                     Your broweser does not support the video tag.
                 </video>
                 <p>This video offers a brief demonstration of our interactive quiz application in action.</p>
+                <a href="https://github.com/abcdbohemia/mariam-web-dev-projects.git" rel="noopener noreferrer">View Code</a>
+            </div>
+            <div className="projects-highlight">
+                <h3>Recipe App</h3>
+                <video width="720" height="640" controls poster={recipeImage}>
+                    <source src={recipeVideo} type="video/mp4" />
+                    Your broweser does not support the video tag.
+                </video>
+                <p>This video offers a brief demonstration of our Recipe application in action.</p>
                 <a href="https://github.com/abcdbohemia/mariam-web-dev-projects.git" rel="noopener noreferrer">View Code</a>
             </div>
         </div>
