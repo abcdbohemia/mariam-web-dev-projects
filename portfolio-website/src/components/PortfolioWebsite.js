@@ -4,7 +4,8 @@ import Projects from './Projects.js';
 
 function PortfolioWebsite() {
     const [showProjectsContent, setShowProjectsContent] = useState(false);
-    const handleViewProjectsClick = () => {setShowProjectsContent(true);
+    const handleViewProjectsClick = () => {
+        setShowProjectsContent(true);
     };
     return (
         <div className="portfolio-website-container">
