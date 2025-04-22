@@ -12,6 +12,8 @@ Welcome to  my personal repository showcasing my portfolio website and a collect
 <img src="images\palette.png" width="600" alt="Image of the Random Color Palette Generator." >
 4. **Project 3: Quiz App:** An interactive application that presents users with questions and tracks their scores. 
 <img src="images\quiz.png" width="600" alt="Image of the Quiz App." >
+5. **Project 4: Recipe App:** A recipe discovery and management tool designed for intuitive navigation and culinary inspiration.
+<img src="images\recipe.png" width="600" alt="Image of the Recipe App." >
 
 ## My Portfolio Website (React)
 
