@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function SearchBar({ onSearch }) {
     const [inputText, setInputText] = useState('');
@@ -25,3 +25,5 @@ function SearchBar({ onSearch }) {
         </form>
     );
 }
+
+export default SearchBar;
