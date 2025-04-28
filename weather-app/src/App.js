@@ -14,7 +14,7 @@ function App() {
     setWeatherData(null);
     setError(null);
 
-  const apiKey = process.env.OPENWEATHER_API_KEY; //access the env variable (we saved api key through git bash earlier)
+  const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY; //access the env variable (we saved api key through git bash earlier)
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=${apiKey}&units=metric`;
   console.log(`Searching for weather in: ${newCity}`);
 
