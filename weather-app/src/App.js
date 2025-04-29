@@ -28,9 +28,13 @@ function App() {
         const {lat, lon } = geoData[0];
         console.log('Coordinates found for', newCity, ':', lat, lon);
         await fetchWeather(lat, lon);
+        //pass the display_name to WeatherDispay
+        setCity(geoData[0].display_name);
+        //update the city state with the full location name
       } else {
         setError('City not found. Please try again.');
         setWeatherData(null);
+        setCity(''); //Clear the city state
       }
     } catch (error) {
         console.error('Fetching geocoding data failed:', error);
@@ -43,7 +47,7 @@ function App() {
     setWeatherData(null);
     setError(null);
 
-  const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}longitude=${longitude}&current=temperature_2m,weather_code,wind_speed_10m&units=metric`;
+  const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,wind_speed_10m&units=metric`;
   try {
     const weatherResponse = await fetch(weatherApiUrl);
     if (!weatherResponse.ok) {
@@ -73,7 +77,7 @@ function App() {
     <div className="app-container">
       <h1>Weather App</h1>
       <SearchBar onSearch={handleSearch} />
-      <WeatherDisplay weather={weatherData} error={error} />
+      <WeatherDisplay weather={weatherData} error={error} city={city} />
     </div>
   );
 }

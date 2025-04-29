@@ -1,6 +1,6 @@
 import React from "react";
 
-function WeatherDisplay({weather, error}) {
+function WeatherDisplay({ weather, error, city }) {
     if (error) {
         return <div className="error-message">Error: {error}</div>;
     }
@@ -8,11 +8,12 @@ function WeatherDisplay({weather, error}) {
     if (weather) {
         return (
             <div className="weather-info">
-                <h2>{weather.name}, {weather.sys.country}</h2>
-                <p className="temperature">Temperature: {Math.round(weather.main.temp)}°C</p>
-                <p className="description">{weather.weather[0].description}</p>
-                <p className="humidity">Humidity: {weather.main.humidity}%</p>
-                <p className="wind">Wind Speed: {weather.wind.speed} m/s</p>
+                <h2>{city}</h2> {/* placeholder for city/locatin*/}
+                <p className="temperature">Temperature: {Math.round(weather.temperature)}°C</p>
+                {weather.weathercode && (
+                    <p className="description">Weather Code:{weather.weathercode}</p>
+                )}
+                <p className="wind">Wind Speed: {weather.windspeed} m/s</p>
             </div>
         );
     }
