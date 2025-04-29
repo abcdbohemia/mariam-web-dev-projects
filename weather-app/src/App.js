@@ -47,7 +47,7 @@ function App() {
     setWeatherData(null);
     setError(null);
 
-  const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,wind_speed_10m&units=metric`;
+  const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current=wind_speed_10m,temperature_2m,weather_code&units=metric`;
   try {
     const weatherResponse = await fetch(weatherApiUrl);
     if (!weatherResponse.ok) {
@@ -55,10 +55,11 @@ function App() {
       throw new Error(message);
     }
     const openMeteoData = await weatherResponse.json();
+    console.log('Open-Meteo Data:', openMeteoData)
     if (openMeteoData && openMeteoData.current) {
       setWeatherData({
         temperature: openMeteoData.current.temperature_2m,
-        weathercode: openMeteoData.current.weathercode,
+        weather_code: openMeteoData.current.weather_code,
         windspeed: openMeteoData.current.windspeed_10m,
       //add logic to inspect the weather code
       });

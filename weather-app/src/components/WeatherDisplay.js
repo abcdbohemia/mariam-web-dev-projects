@@ -10,8 +10,8 @@ function WeatherDisplay({ weather, error, city }) {
             <div className="weather-info">
                 <h2>{city}</h2> {/* placeholder for city/locatin*/}
                 <p className="temperature">Temperature: {Math.round(weather.temperature)}°C</p>
-                {weather.weathercode && (
-                    <p className="description">Weather Code:{weather.weathercode}</p>
+                {weather.weather_code && (
+                    <p className="description">Weather Code: {weather.weather_code} </p>
                 )}
                 <p className="wind">Wind Speed: {weather.windspeed} m/s</p>
             </div>
