@@ -13,41 +13,62 @@ function App() {
     setCity(newCity);
     setWeatherData(null);
     setError(null);
+    
+    const nominatimURL = `https://nominatim.openstreetmap.org/search?q=${newCity}&format=json&limit=1`;
 
-  const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY; //access the env variable (we saved api key through git bash earlier)
-  const geocodingApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${newCity}&limit=1&appid=${apiKey}`;
+    try{
+      const geoResponse = await fetch(nominatimURL);
+      if (!geoResponse.ok) {
+        const message = `Nominatim API error! status: ${geoResponse.status}`;
+        throw new error (message);
+      }
+      const geoData = await geoResponse.json();
 
-  try {
-  const geoResponse = await fetch(geocodingApiUrl);
-  if (!geoResponse.ok) {
-    const message = `Geocoding API error! status: ${geoResponse.status}`;
-    throw new Error(message);
-  }
-  const geoData = await geoResponse.json();
-
-  if (geoData & geoData.length > 0) {
-    const { lat, lon } = geoData[0];
-    console.log('Coordinates found:', lat, lon);
-  
-  const weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}&units=metric';
-  const weatherResponse = await fetch(weatherApiUrl);
-  if (!weatherResponse.ok) {
-    const message = `Weather API error! status: ${weatherResponse.status}`;
-    throw new Error(message);
-  }
-  const weatherData = await weatherResponse.json();
-  setWeatherData(weatherData);
-} else {
-  setError('City not found. Please try again.');
-  setWeatherData(null);
-}
-  } catch (error) { 
-    console.error( `Fetching data failed:`, error);
-  setError('Failed to fetch weather data. Please try again.');
-  setWeatherData(null); //ensure weatherData is null on error
-  }
+      if (geoData && geoData.length > 0) {
+        const {lat, lon } = geoData[0];
+        console.log('Coordinates found for', newCity, ':', lat, lon);
+        await fetchWeather(lat, lon);
+      } else {
+        setError('City not found. Please try again.');
+        setWeatherData(null);
+      }
+    } catch (error) {
+        console.error('Fetching geocoding data failed:', error);
+        setError('Failed to fetch location.data. Please try again.');
+        setWeatherData(null);
+      }
   };
-  
+
+  const fetchWeather = async (latitude, longitude) => {
+    setWeatherData(null);
+    setError(null);
+
+  const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}longitude=${longitude}&current=temperature_2m,weather_code,wind_speed_10m&units=metric`;
+  try {
+    const weatherResponse = await fetch(weatherApiUrl);
+    if (!weatherResponse.ok) {
+      const message = `Open-Meteo API error! status: ${weatherResponse.status}`;
+      throw new Error(message);
+    }
+    const openMeteoData = await weatherResponse.json();
+    if (openMeteoData && openMeteoData.current) {
+      setWeatherData({
+        temperature: openMeteoData.current.temperature_2m,
+        weathercode: openMeteoData.current.weathercode,
+        windspeed: openMeteoData.current.windspeed_10m,
+      //add logic to inspect the weather code
+      });
+    } else {
+      setError('Could not retrieve current weather data.');
+      setWeatherData(null);
+    }
+    } catch (error) {
+      console.error('Fetching weather data failed:', error);
+      setError('Failed to fetch weather data. Please try again.');
+      setWeatherData(null);
+    }
+  };
+
   return (
     <div className="app-container">
       <h1>Weather App</h1>
