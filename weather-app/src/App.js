@@ -9,7 +9,6 @@ function App() {
   const [error, setError] = useState(null); // State to hold any error messages
 
   const handleSearch = async (newCity) => {
-    setCity(newCity);
     setWeatherData(null);
     setError(null);
 
@@ -24,11 +23,10 @@ function App() {
       const geoData = await geoResponse.json();
 
       if (geoData && geoData.length > 0) {
-        const { lat, lon } = geoData[0];
-        console.log('Coordinates found for', newCity, ':', lat, lon);
+        const { lat, lon, display_name } = geoData[0]; //destructuring
+        console.log('Coordinates found for', display_name, ':', lat, lon);
         await fetchWeather(lat, lon);
-        // Pass the display_name to WeatherDisplay
-        setCity(geoData[0].display_name);
+        setCity(display_name); // Set the city state only once with API's name
         // Update the city state with the full location name
       } else {
         setError('City not found. Please try again.');
