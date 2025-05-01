@@ -1,4 +1,4 @@
-// WeatherCodes.js
+// weatherCodes.js
 
 const weatherDescriptions ={
     0: "Clear Sky",

@@ -1,5 +1,5 @@
 import React from "react";
-import weatherDescriptions from './WeatherCodes';
+import weatherDescriptions from './weatherCodes';
 
 function WeatherDisplay({ weather, error, city }) {
   if (error) {
