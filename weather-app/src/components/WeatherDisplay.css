@@ -1,0 +1,47 @@
+/* WeatherDisplay.css*/
+
+/* Base styles for the weather info container */
+.weather-info {
+    padding: 20px;
+    border: solid 5px red;
+    border-radius: 8px;
+}
+
+/* Styles for daytime*/
+.weather-info.daytime {
+    background-color: #e0f7fa;
+}
+
+/* styles for nighttime*/
+.weather-info.nighttime {
+    background-color: #1e272e;
+    color: #f0f0f0;
+}
+
+.weather-details {
+    display: flex;
+    border: solid 5px red;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.weather-icon {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.temperature {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.description { 
+    margin-bottom: 5px;
+}
+
+.wind {
+    font-size: 0.9em;
+    color: #777;
+}

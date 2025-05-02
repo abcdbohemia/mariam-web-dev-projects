@@ -1,0 +1,51 @@
+/*DailyForecast.css*/
+
+.daily-forecast-container {
+    margin-top: 20px;
+    padding: 15px;
+    border: solid 2px yellow;
+
+}
+
+.daily-forecast-list {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto; /* horizontal scrolling*/
+    scrollbar-width: none; /*hide scrollbar in some browsers*/
+    -ms-overflow-style: none; /*Hide scrollbar in IE and Edge*/
+}
+
+.daily-forecast-list::-webkit-scrollbar {
+    display: none; /*hide scrossbar in Chrome, Safari, and Opera*/
+}
+
+.daily-forecast-item {
+    flex: 0 0 auto;
+    width: 115px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.date {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.daily-weather-icon {
+    width: 70px;
+    height: 70px;
+}
+
+.temp-max {
+    color: #e44d26;
+}
+
+.temp-min{
+    color: #29abe2;
+}

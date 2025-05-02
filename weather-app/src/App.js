@@ -60,6 +60,7 @@ function App() {
           temperature_2m: openMeteoData.current.temperature_2m,
           weather_code: openMeteoData.current.weather_code,
           wind_speed_10m: openMeteoData.current.wind_speed_10m, 
+          is_day: openMeteoData.current.is_day,
           daily: openMeteoData.daily,
         });
       } else {
