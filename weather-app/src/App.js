@@ -44,7 +44,7 @@ function App() {
     setWeatherData(null);
     setError(null);
 
-    const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current=wind_speed_10m,temperature_2m,weather_code&units=metric&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=auto`;
+    const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current=wind_speed_10m,temperature_2m,weather_code,is_day&units=metric&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=auto`;
     console.log(weatherApiUrl);
     try {
       const weatherResponse = await fetch(weatherApiUrl);

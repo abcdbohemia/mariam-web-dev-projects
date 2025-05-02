@@ -2,6 +2,7 @@ import React from "react";
 import weatherDescriptions from './weatherCodes';
 import weatherIconMapping from './weatherIconMapping';
 import './WeatherDisplay.css'
+import DailyForecast from './DailyForecast';
 
 function WeatherDisplay({ weather, error, city }) {
   if (error) {
@@ -25,6 +26,7 @@ function WeatherDisplay({ weather, error, city }) {
           <p className="description">Weather: {description} (Code: {weather.weather_code})</p>
         )}
         <p className="wind">Wind Speed: {weather.wind_speed_10m} m/s</p>
+        {weather.daily && <DailyForecast daily={weather.daily} />}
       </div>
     );
   }
