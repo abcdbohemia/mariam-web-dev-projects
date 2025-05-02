@@ -1,5 +1,6 @@
 import React from "react";
 import weatherDescriptions from './weatherCodes';
+import weatherIconMapping from './weatherIconMapping';
 
 function WeatherDisplay({ weather, error, city }) {
   if (error) {
