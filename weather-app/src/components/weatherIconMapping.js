@@ -30,3 +30,5 @@ const weatherIconMapping = {
     96: 'scattered-thunderstorm.svg', // Thunderstorm with slight hail
     99: 'thunderstorms.svg', // Thunderstorm with heavy hail
 }
+
+export default weatherIconMapping;

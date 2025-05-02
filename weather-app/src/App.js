@@ -44,8 +44,8 @@ function App() {
     setWeatherData(null);
     setError(null);
 
-    const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current=wind_speed_10m,temperature_2m,weather_code&units=metric`;
-
+    const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&current=wind_speed_10m,temperature_2m,weather_code&units=metric&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=auto`;
+    console.log(weatherApiUrl);
     try {
       const weatherResponse = await fetch(weatherApiUrl);
       if (!weatherResponse.ok) {
@@ -55,11 +55,12 @@ function App() {
       const openMeteoData = await weatherResponse.json();
       console.log('Open-Meteo Data:', openMeteoData);
 
-      if (openMeteoData && openMeteoData.current) {
+      if (openMeteoData && openMeteoData.current && openMeteoData.daily) {
         setWeatherData({
-          temperature: openMeteoData.current.temperature_2m,
+          temperature_2m: openMeteoData.current.temperature_2m,
           weather_code: openMeteoData.current.weather_code,
-          windspeed: openMeteoData.current.wind_speed_10m, // Fixed property name
+          wind_speed_10m: openMeteoData.current.wind_speed_10m, 
+          daily: openMeteoData.daily,
         });
       } else {
         setError('Could not retrieve current weather data.');

@@ -19,12 +19,12 @@ function WeatherDisplay({ weather, error, city }) {
         <h2>{city}</h2> {/* Placeholder for city/location */}
         <div className="weather-details">
           {iconPath && <img src={iconPath} alt={description} className="weather-icon" />} {/*Display the icon*/}
-          <p className="temperature">Temperature: {Math.round(weather.temperature)}°C</p>
+          <p className="temperature">Temperature: {Math.round(weather.temperature_2m)}°C</p>
         </div>
         {weather.weather_code && (
           <p className="description">Weather: {description} (Code: {weather.weather_code})</p>
         )}
-        <p className="wind">Wind Speed: {weather.windspeed} m/s</p>
+        <p className="wind">Wind Speed: {weather.wind_speed_10m} m/s</p>
       </div>
     );
   }
