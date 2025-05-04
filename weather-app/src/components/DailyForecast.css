@@ -3,7 +3,8 @@
 .daily-forecast-container {
     margin-top: 20px;
     padding: 15px;
-    border: solid 2px yellow;
+    border: solid 5px  rgba(64, 154, 163, 0.263);
+    border-radius: 8px;
 
 }
 

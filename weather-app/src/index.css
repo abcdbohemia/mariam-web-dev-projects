@@ -3,8 +3,7 @@ html, body {
   padding: 0;
   height: auto;
   width: 100vm;
-  background-color: pink;
-  border: solid rgb(57, 218, 57) 4px;
+  background-color: rgb(250, 250, 165);
 }
 
 body {

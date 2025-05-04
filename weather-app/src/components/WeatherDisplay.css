@@ -3,23 +3,26 @@
 /* Base styles for the weather info container */
 .weather-info {
     padding: 20px;
-    border: solid 5px rgb(38, 0, 255);
-    border-radius: 8px;
+    border-radius: 10px;
     width: 50%;
     height: 100%;
     margin-bottom: 15px;
-
+    border: solid 5px rgba(93, 184, 139, 0.603); 
 }
+
+
 
 /* Styles for daytime*/
 .weather-info.daytime {
     background-color: #e0f7fa;
+    color: rgb(61, 181, 121); 
 }
+
 
 /* styles for nighttime*/
 .weather-info.nighttime {
     background-color: #1e272e;
-    color: #f0f0f0;
+    color: rgba(147, 224, 231, 0.263);
 }
 
 h2 {
@@ -28,34 +31,50 @@ h2 {
 .weather-details {
     display: flex;
     flex-direction: column;
-    border: solid 5px red;
+    border: solid 5px rgba(64, 154, 163, 0.263);
+    border-radius: 8px;
     align-items: center;
     margin-bottom: 10px;
     justify-content: center;
-    padding: 0px;
+    padding: 10px;
 }
 
 .weather-icon {
-    width: 50%;
-    height: 50%;
+    width: 40%;
+    height: 40%;
     padding: 0px;
-    margin-right: 10px;
-    border: solid 2px rgb(41, 43, 38);
-    
+    margin-right: 0px;    
 }
 
 .temperature {
     font-size: 1.5em;
     font-weight: bold;
     margin: 0;
-    border: solid 2px rgb(32, 34, 29);
-    width: 40%;
+    padding: 0;
+    width: 100%;
     height: 40%;
+    text-align: center;
+    word-break: break-word;
 }
 
-@media (max-width: 600px) {
-    .temp-value {
-        white-space: normal;
+@media (max-width: 400px) {
+    .weather-details {
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+    .weather-icon {
+        width: auto;
+        max-width: 80%;
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    .temperature {
+        font-size: 1em;
+        width: auto;
+        align-items: center;
     }
 }
 .description { 
