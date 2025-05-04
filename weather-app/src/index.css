@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: auto;
-  width: 100%;
+  width: 100vm;
   background-color: pink;
   border: solid rgb(57, 218, 57) 4px;
 }
