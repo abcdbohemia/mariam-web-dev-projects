@@ -1,3 +1,12 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  width: 100%;
+  background-color: pink;
+  border: solid rgb(57, 218, 57) 4px;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

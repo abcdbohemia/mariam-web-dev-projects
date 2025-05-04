@@ -3,8 +3,12 @@
 /* Base styles for the weather info container */
 .weather-info {
     padding: 20px;
-    border: solid 5px red;
+    border: solid 5px rgb(38, 0, 255);
     border-radius: 8px;
+    width: 50%;
+    height: 100%;
+    margin-bottom: 15px;
+
 }
 
 /* Styles for daytime*/
@@ -18,6 +22,9 @@
     color: #f0f0f0;
 }
 
+h2 {
+    margin-top: 0px;
+}
 .weather-details {
     display: flex;
     border: solid 5px red;
@@ -44,4 +51,8 @@
 .wind {
     font-size: 0.9em;
     color: #777;
+}
+
+.placeholder {
+    margin-bottom: 15px;
 }

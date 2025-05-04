@@ -27,7 +27,7 @@ const weatherIconMapping = {
     85: 'snowy-1-day.svg', // Snow showers slight
     86: 'snowy-3-day.svg', // Snow showers heavy
     95: 'scattered-thunderstorms-day.svg', // Thunderstorm: Slight or moderate
-    96: 'scattered-thunderstorm.svg', // Thunderstorm with slight hail
+    96: 'scattered-thunderstorms.svg', // Thunderstorm with slight hail
     99: 'thunderstorms.svg', // Thunderstorm with heavy hail
 }
 
