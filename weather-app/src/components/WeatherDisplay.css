@@ -31,19 +31,32 @@ h2 {
     align-items: center;
     margin-bottom: 10px;
     justify-content: center;
+    padding: 0px;
 }
 
 .weather-icon {
-    width: 70px;
-    height: 70px;
+    width: 50%;
+    height: 50%;
+    padding: 0px;
     margin-right: 10px;
+    border: solid 2px rgb(41, 43, 38);
+    
 }
 
 .temperature {
     font-size: 1.5em;
     font-weight: bold;
+    margin: 0;
+    border: solid 2px rgb(32, 34, 29);
+    width: 40%;
+    height: 40%;
 }
 
+@media (max-width: 600px) {
+    .temp-value {
+        white-space: normal;
+    }
+}
 .description { 
     margin-bottom: 5px;
 }
