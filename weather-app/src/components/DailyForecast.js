@@ -3,6 +3,17 @@ import weatherDescriptions from './weatherCodes';
 import weatherIconMapping from  './weatherIconMapping';
 import './DailyForecast.css'; 
 
+const getDaytimeIcon = (weatherCode) => {
+    const iconMapping = weatherIconMapping[weatherCode];
+    if (iconMapping && iconMapping.day) {
+        return iconMapping.day;
+    } else {
+        console.error(`No daytime icon mapping found for weather code: ${weatherCode}`);
+        return 'placeholder-day.svg';
+    }
+};
+
+
 function DailyForecast({ daily }) {
     if(!daily || !daily.time || !daily.temperature_2m_max || !daily.temperature_2m_min || !daily.weather_code) 
     {
@@ -17,8 +28,9 @@ function DailyForecast({ daily }) {
                     <li key={date} className="daily-forecast-item">
                         <p className="date">{new Date(date).toLocaleDateString(undefined, {weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</p>
                         {daily.weather_code && daily.weather_code[index] !==undefined && (
-                            <img src={`/assets/animated/${weatherIconMapping[daily.weather_code[index]] || 
-                                'default.svg'}`} alt={weatherDescriptions[daily.weather_code[index]] || 'Weathericon'}
+                            <img 
+                            src={`/assets/animated/${getDaytimeIcon(daily.weather_code[index])}`} 
+                            alt={weatherDescriptions[daily.weather_code[index]] || 'Weathericon'}
                                 className="daily-weather-icon" 
                             />
                         )}

@@ -13,7 +13,7 @@ function WeatherDisplay({ weather, error, city }) {
     const description = weatherDescriptions[weather.weather_code] // Using the value of weather.weather_code as a key to look up a corresponding value within the weatherDescription object.
     || "Description not available";
     const isDay= weather.is_day; // Recieve the is_day prop
-    const iconFile = weatherIconMapping[weather.weather_code] || (isDay === 1 ? 'clear-day.svg' : 'clear-night.svg');
+    const iconFile = weatherIconMapping[weather.weather_code]?.[isDay === 1 ? 'day' : 'night'] || (isDay === 1 ? 'clear-day.svg' : 'clear-night.svg');
     // Basic day/night icon fallback
     const iconPath = `/assets/animated/${iconFile}`; //construct the path to the icon 
     const weatherInfoClass = `weather-info ${isDay ===1 ? 'daytime' : 'nighttime'}`; //setting class to daytime or nighttime

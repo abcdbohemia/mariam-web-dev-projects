@@ -78,7 +78,8 @@ h2 {
     }
 }
 .description { 
-    margin-bottom: 5px;
+    margin-bottom: 0px;
+    padding: 0px;
 }
 
 .wind {
@@ -88,4 +89,5 @@ h2 {
 
 .placeholder {
     margin-bottom: 15px;
+    color: rgb(241, 142, 203);
 }
