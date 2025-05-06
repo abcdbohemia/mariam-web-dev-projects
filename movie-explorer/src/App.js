@@ -17,24 +17,123 @@ function App() {
   const [error, setError] = useState(null);
   const apiKey = process.env.REACT_APP_MOVIE_EXPLORER_API_KEY; // Access the api API key from .env.local
   
-  const FetchMovies = async (page = 1) => {
+  // Fetch keyword ID for the search term 
+  const fetchKeywordId = async (searchTerm) => {
+    const keywordUrl =`https://api.themoviedb.org/3/search/keyword?api_key=${apiKey}&query=${encodeURIcomponent(searchTerm)}&page=1`
+    try {
+      const response = await fetch(keywordUrl);
+      if (!response.ok) {
+        throw new Error(`Keyword search failed: ${response.status}`);
+      }
+      const data = await response.json(); 
+      //Return the first keyword ID if available, otherwise null
+      return data.results[0]?.id || null;
+    } catch (error) {
+      console.error('Error fetching keyword:', error);
+      return null;
+    }
+  };
+
+  const fetchMovies = async (page = 1) => {
     setLoading(true);
     setError(null);
-    let apiUrl = ''; // input the correct api url here
-
     if(!apiKey) {
-      setError('API key not found. Please ensure REACT_APP_MOVIE_EXPLORER_API_KE is set in .env.local and the server is restarted.');
+      setError('API key not found. Please ensure REACT_APP_MOVIE_EXPLORER_API_KEY is set in .env.local and the server is restarted.');
       setLoading(false);
       return;
     }
-
-    if(searchTerm) {
-      apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}&include_adult=true&language=en-US&page=${page}`;
+    // Use /discover/movie as the base endpoint
+    let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key${apiKey}&include_adult=true&include_video=false&language=en-US&sort_by=popularity.desc&page=${page}`;
+    try {
+      // Add genre filter if provided
+      if (selectedGenre) {
+        apiUrl += `&with_genres=${selectedGenre}`;
+      }
+      // Add keyword filter is searchTerm is provided
+      if (searchTerm) {
+        const keywordId = await fetchKeywordId(searchTerm);
+        if (keywordId) {
+          apiUrl += `with_keywords=${keywordId}` ;
+        } else {
+          // No keyword found; show error or return empty results
+        setError(`No keyword found for search term: "${searchTerm}". Try a different term.`);
+        setMovies([]);
+        setTotalPages(1);
+        setLoading(false);
+        return;
+        }
+       }
+       // If no filters are applied, use /movie/popular
+       if (!searchTerm && !selectedGenre) {
+        apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${page}`;
+       }
+       const response = await fetch(apiUrl);
+       if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+       }
+       const data = await response.json();
+       setMovies(data.results || []);
+       setTotalPages(data.total_pages || 1);
+       setCurrentPage(page);
+    } catch (err) {
+      setError('Failed to fetch movies.');
+      console.error('Error fetching movies:', err );
+      setMovies([]);
+      setTotalPages(1);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    fetchMovies(1);
+  }, [apiKey, selectedGenre, searchTerm]); //explain this code
+
+  const handleSearch = (query) => {
+    setSearchTerm(query);
+    setCurrentPage(1);
+  };
+
+  const handleGenreFilter = (genreId) => {
+    setSelectedGenre(genreId);
+    setSearchTerm(''); //Clear search term when genre is selected
+    setCurrentPage(1);
+  };
+
+  const hanflePageChange =(newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      fetchMovies(newPage);
+    }
+  };
+
+  const handleMovieClick = (movieId) => {
+    setSelectedMovieId(movieId);
   }
+
+  const handleCloseDetails = () => {
+    setSelectedMovieId(null);
+  };
+
+  if (loading) {
+    return <p>Loading movies...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
     <div className="app">
       <h1>Movie Explorer</h1>
+      <SearchBar onSearch={handleSearch} />
+      <GenreFilter onFilter={handleGenreFilter} />
+      <MovieList movies={movies} onMovieClick={handleMovieClick} />
+      {totalPages > 1 && (
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+      )}
+      {selectedMovieId && (
+        <MovieDetails movieId={selectedMovieId} onClose={handleCloseDetails} />
+      )}
     </div>
   );
 }
