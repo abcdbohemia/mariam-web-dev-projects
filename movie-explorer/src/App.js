@@ -19,7 +19,7 @@ function App() {
   
   // Fetch keyword ID for the search term 
   const fetchKeywordId = async (searchTerm) => {
-    const keywordUrl =`https://api.themoviedb.org/3/search/keyword?api_key=${apiKey}&query=${encodeURIcomponent(searchTerm)}&page=1`
+    const keywordUrl =`https://api.themoviedb.org/3/search/keyword?api_key=${apiKey}&query=${encodeURIComponent(searchTerm)}&page=1`
     try {
       const response = await fetch(keywordUrl);
       if (!response.ok) {
@@ -100,7 +100,7 @@ function App() {
     setCurrentPage(1);
   };
 
-  const hanflePageChange =(newPage) => {
+  const handlePageChange =(newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
       fetchMovies(newPage);
     }
