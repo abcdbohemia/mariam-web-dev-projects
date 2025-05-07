@@ -19,7 +19,7 @@ function App() {
   
   // Fetch keyword ID for the search term 
   const fetchKeywordId = async (searchTerm) => {
-    const keywordUrl =`https://api.themoviedb.org/3/search/keyword?api_key=${apiKey}&query=${encodeURIComponent(searchTerm)}&page=1`
+    const keywordUrl =`https://api.themoviedb.org/3/search/keyword?api_key=${apiKey}&query=${encodeURIComponent(searchTerm)}&page=1`;
     try {
       const response = await fetch(keywordUrl);
       if (!response.ok) {
@@ -27,14 +27,14 @@ function App() {
       }
       const data = await response.json(); 
       //Return the first keyword ID if available, otherwise null
-      return data.results[0]?.id || null;
+      return data.results[0]?.id || null; // why [0] and .id ????
     } catch (error) {
       console.error('Error fetching keyword:', error);
       return null;
     }
   };
 
-  const fetchMovies = async (page = 1) => {
+  const fetchMovies = async (page = 1) => { //default value of page #
     setLoading(true);
     setError(null);
     if(!apiKey) {
@@ -46,14 +46,14 @@ function App() {
     let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key${apiKey}&include_adult=true&include_video=false&language=en-US&sort_by=popularity.desc&page=${page}`;
     try {
       // Add genre filter if provided
-      if (selectedGenre) {
+      if (selectedGenre) { // do we need curly braces here??
         apiUrl += `&with_genres=${selectedGenre}`;
       }
-      // Add keyword filter is searchTerm is provided
+      // Add keyword filter if searchTerm is provided
       if (searchTerm) {
         const keywordId = await fetchKeywordId(searchTerm);
         if (keywordId) {
-          apiUrl += `with_keywords=${keywordId}` ;
+          apiUrl += `&with_keywords=${keywordId}` ;
         } else {
           // No keyword found; show error or return empty results
         setError(`No keyword found for search term: "${searchTerm}". Try a different term.`);
@@ -80,14 +80,14 @@ function App() {
       console.error('Error fetching movies:', err );
       setMovies([]);
       setTotalPages(1);
-    } finally {
+    } finally { // designed to execute no matter what happens? right?
       setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchMovies(1);
-  }, [apiKey, selectedGenre, searchTerm]); //explain this code
+  }, [apiKey, selectedGenre, searchTerm]); //dependency array indicates that when any of the items change fetchMovies(1) will rerun
 
   const handleSearch = (query) => {
     setSearchTerm(query);
