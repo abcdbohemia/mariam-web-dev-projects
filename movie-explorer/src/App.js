@@ -27,7 +27,7 @@ function App() {
       }
       const data = await response.json(); 
       //Return the first keyword ID if available, otherwise null
-      return data.results[0]?.id || null; // why [0] and .id ????
+      return data.results[0]?.id || null; // results is an array of objects, easch object has an id and name, we are extracting the id
     } catch (error) {
       console.error('Error fetching keyword:', error);
       return null;
@@ -42,11 +42,11 @@ function App() {
       setLoading(false);
       return;
     }
-    // Use /discover/movie as the base endpoint
-    let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key${apiKey}&include_adult=true&include_video=false&language=en-US&sort_by=popularity.desc&page=${page}`;
+    // Use /discover/movie as the base endpoint to return list of movies ranked by popularity
+    let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=true&include_video=false&language=en-US&sort_by=popularity.desc&page=${page}`;
     try {
       // Add genre filter if provided
-      if (selectedGenre) { // do we need curly braces here??
+      if (selectedGenre) { // curly braces optional for single statement if blocks 
         apiUrl += `&with_genres=${selectedGenre}`;
       }
       // Add keyword filter if searchTerm is provided
@@ -76,9 +76,8 @@ function App() {
        setTotalPages(data.total_pages || 1);
        setCurrentPage(page);
     } catch (err) {
-      setError('Failed to fetch movies.');
-      console.error('Error fetching movies:', err );
-      setMovies([]);
+      setError('Failed to fetch movies.'); // we re-render the app component, and if(error) block is executed
+      console.error('Error fetching movies:', err ); //err here equals the message of the new error that was thrown above
       setTotalPages(1);
     } finally { // designed to execute no matter what happens? right?
       setLoading(false);
@@ -86,7 +85,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchMovies(1);
+    fetchMovies(1); //fatch movies is called as a side effect after the conmponent has rendered and the browser has updates the DOM
   }, [apiKey, selectedGenre, searchTerm]); //dependency array indicates that when any of the items change fetchMovies(1) will rerun
 
   const handleSearch = (query) => {
@@ -100,7 +99,7 @@ function App() {
     setCurrentPage(1);
   };
 
-  const handlePageChange =(newPage) => {
+  const handlePageChange =(newPage) => { //newPage parameter comes from pagination component
     if (newPage >= 1 && newPage <= totalPages) {
       fetchMovies(newPage);
     }
