@@ -15,8 +15,27 @@ function App() {
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [genres, setGenres] = useState([]);
   const apiKey = process.env.REACT_APP_MOVIE_EXPLORER_API_KEY; // Access the api API key from .env.local
   
+  // Fetch movie genres from the API
+  const fetchGenres = async () => {
+    if (!apiKey) {
+      console.error('API key not found. Please ensure REACT_APP_MOVIE_EXPLORER_API_KEY is set in .env.local and the server is restarted.');
+    return;
+    }
+    const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}language=en`;
+    try {
+      const response = await fetch(genreUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch genres: ${response.status}`);
+      }
+      const data = await response.json();
+      setGenres(data.genres || []);
+    } catch (error) {
+      console.error('Error fetching genres:', error);
+    }
+  };
   // Fetch keyword ID for the search term 
   const fetchKeywordId = async (searchTerm) => {
     const keywordUrl =`https://api.themoviedb.org/3/search/keyword?api_key=${apiKey}&query=${encodeURIComponent(searchTerm)}&page=1`;
@@ -86,6 +105,7 @@ function App() {
 
   useEffect(() => {
     fetchMovies(1); //fatch movies is called as a side effect after the conmponent has rendered and the browser has updates the DOM
+    fetchGenres(); //call fetchGenre when the component mounts
   }, [apiKey, selectedGenre, searchTerm]); //dependency array indicates that when any of the items change fetchMovies(1) will rerun
 
   const handleSearch = (query) => {
@@ -120,13 +140,12 @@ function App() {
   if (error) {
     return <p>{error}</p>;
   }
-console.log("SearchBar:", SearchBar)
 
   return (
     <div className="app">
       <h1>Movie Explorer</h1>
       <SearchBar onSearch={handleSearch} />
-      <GenreFilter onFilter={handleGenreFilter} />
+      <GenreFilter genres={genres} onFilter={handleGenreFilter} selectedGenre={selectedGenre} />
       <MovieList movies={movies} onMovieClick={handleMovieClick} />
       {totalPages > 1 && (
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
