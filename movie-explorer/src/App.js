@@ -105,7 +105,7 @@ function App() {
     }
   };
 
-  const handleMovieClick = (movieId) => {
+  const handleMovieClick = (movieId) => { //movieId comes from MovieList component
     setSelectedMovieId(movieId);
   }
 
@@ -120,6 +120,7 @@ function App() {
   if (error) {
     return <p>{error}</p>;
   }
+console.log("SearchBar:", SearchBar)
 
   return (
     <div className="app">
