@@ -24,7 +24,7 @@ function App() {
       console.error('API key not found. Please ensure REACT_APP_MOVIE_EXPLORER_API_KEY is set in .env.local and the server is restarted.');
     return;
     }
-    const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}language=en`;
+    const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`;
     try {
       const response = await fetch(genreUrl);
       if (!response.ok) {
@@ -53,7 +53,7 @@ function App() {
     }
   };
 
-  const fetchMovies = async (page = 1) => { //default value of page #
+  const fetchMovies = async (page = 1) => { //argument is newpage from the pagination component
     setLoading(true);
     setError(null);
     if(!apiKey) {
@@ -62,7 +62,7 @@ function App() {
       return;
     }
     // Use /discover/movie as the base endpoint to return list of movies ranked by popularity
-    let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=true&include_video=false&language=en-US&sort_by=popularity.desc&page=${page}`;
+    let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=true&include_video=false&language=en-US&sort_by=popularity.desc&page=${page}`; //using the newpage value here as well
     try {
       // Add genre filter if provided
       if (selectedGenre) { // curly braces optional for single statement if blocks 
