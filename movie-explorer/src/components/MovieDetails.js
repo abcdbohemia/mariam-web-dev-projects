@@ -50,7 +50,7 @@ function MovieDetails({ movieId, onClose }) {
         return <p>Could not load movie details.</p>;
     }
 
-    const imageUrl = movieDetails.poseter_path? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`: 'https://placehold.co/200x300?text=No+Poster'; //Configuration w/apiKey: [baseurl][size][filepath] 
+    const imageUrl = movieDetails.poster_path? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`: 'https://placehold.co/200x300?text=No+Poster'; //Configuration w/apiKey: [baseurl][size][filepath] 
 
     const genresList = movieDetails.genres? movieDetails.genres.map(genre => genre.name).join(', ') : 'N/A';
 
