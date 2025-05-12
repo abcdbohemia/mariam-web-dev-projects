@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './GenreFilter.css';
-import SearchBar from './components'
+import SearchBar from './SearchBar';
 
 function GenreFilter({ genres, onFilter, selectedGenre }){
 return (
