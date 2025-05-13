@@ -3,4 +3,14 @@
   color: black;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: rgb(39, 64, 100);
+  min-height: 100vh;
 }
+
+h1 {
+  color: rgb(89, 127, 198);
+  margin-bottom: 20px;
+}
+

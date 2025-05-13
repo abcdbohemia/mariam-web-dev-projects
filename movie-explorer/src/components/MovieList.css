@@ -1,0 +1,52 @@
+.movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    width: 90%;
+    max-width: 1200px;
+    margin-bottom: 20px auto;
+}
+
+.movie-item {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(99, 230, 129);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.movie-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(57, 207, 124, 0.646);
+}
+
+.movie-poster {
+width: 100%;
+display: block; /*What does this do?*/
+border-bottom: 1px solid green;
+aspect-ratio: 2/3;    
+font-style: italic;
+object-fit: cover;
+}
+
+.no-poster {
+    background-color: #0e0f18;
+    color: #777;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-style: italic;
+    aspect-ratio: 2/3;
+}
+
+.movie-title {
+font-size: 1.1rem;
+font-weight: 600; 
+margin: 12px 10px;
+color: #333;
+text-align: center;
+}
