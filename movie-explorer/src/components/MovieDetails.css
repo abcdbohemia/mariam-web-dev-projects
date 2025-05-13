@@ -1,4 +1,90 @@
 
 .movie-details-overlay {
-    background-color: red;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(20, 20, 21);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.movie-details {
+    background-color: rgb(40, 45, 69);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    overflow-y:auto;
+    max-height: 90vh;
+    padding: 30px;
+    max-width: 900px;
+    position: relative;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .movie-details {
+        flex-direction: row;
+    }
+}
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ffffff;
+    align-content: center;
+    text-align: center;
+    transition: color 0.2s ease-in-out;
+}
+
+.close-button:hover {
+    color: #171616;
+}
+
+.movie-details img.movie-poster {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+@media(min-width: 768px) {
+    .movie-details img.movie-poster {
+        margin-bottom: 0;
+    }
+}
+
+.details-content {
+    flex-grow: 1; /*Allows content to take up remaining space*/
+    display: flex;
+    flex-direction: column;
+}
+
+.details-content h2 {
+font-size: 2.2rem;
+font-weight: bold;
+margin-bottom: 10px;
+color: #faf8f8;
+}
+
+.details-content .tagline {
+    font-style: italic;
+    color: #fafafa;
+    margin-bottom: 15px;
+}
+
+.details-content p {
+    line-height: 1.7;
+    margin-bottom: 10px;
+    color: #f6f2f2;
 }

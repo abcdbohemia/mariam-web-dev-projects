@@ -63,9 +63,9 @@ function MovieDetails({ movieId, onClose }) {
                 <img src={imageUrl} alt={movieDetails.title} className="movie-poster" />
                 <div className="details-content">
                     <h2>{movieDetails.title}</h2>
-                    <p className="tagline">{movieDetails.tagline}</p>
+                    <p className="tagline" >{movieDetails.tagline}</p>
                     <p><strong>Reslease Date:</strong> {movieDetails.release_date}</p>
-                    <p><strong>Genres:</strong>{genresList}</p>
+                    <p><strong>Genres: </strong>{genresList}</p>
                     <p><strong>Overview:</strong> {movieDetails.overview}</p>
                     <p><strong>Rating:</strong> {movieDetails.vote_average} / 10 ({
                     movieDetails.vote_count} votes)</p>
