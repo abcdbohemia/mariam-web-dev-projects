@@ -61,6 +61,6 @@
     }
     .genre-select {
         width: 100%;
-        max-width
+        max-width: 100%;
     }
 }
