@@ -14,3 +14,8 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* > selects only the elements that are direct children of the element specified before it */
+.app > .controls-container {
+  display: flex;
+  gap:  20px;
+}

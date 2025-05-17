@@ -144,8 +144,10 @@ function App() {
   return (
     <div className="app">
       <h1>Movie Explorer</h1>
-      <SearchBar onSearch={handleSearch} />
-      <GenreFilter genres={genres} onFilter={handleGenreFilter} selectedGenre={selectedGenre} />
+      <div className="controls-container">
+        <SearchBar onSearch={handleSearch} />
+        <GenreFilter genres={genres} onFilter={handleGenreFilter} selectedGenre={selectedGenre} />
+      </div>
       <MovieList movies={movies} onMovieClick={handleMovieClick} />
       {totalPages > 1 && (
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />

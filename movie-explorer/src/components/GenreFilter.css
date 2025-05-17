@@ -1,11 +1,16 @@
 .genre-filter {
    margin-bottom: 20px;
    background-color: rgb(204, 239, 133);
+   display: flex;
+   gap: 20px;
+   align-items: center;
+
 }
 
 .genre-filter h2 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
+    font-size: 1em;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .custom-select {
@@ -15,9 +20,9 @@
 }
 
 .select-trigger {
-    background-color: #fefefe;
+    background-color: #bd6161;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 0px;
     display: flex; /*????*/
     justify-content: space-between; /*??*/
     align-items: center; /*??*/
@@ -52,7 +57,7 @@
     left: 0;
     right: 0;
     background-color: rgb(204, 239, 133);
-    border: 1px solid #e32323;
+    border: 1px solid #2340e3;
     border-top: none;
     margin-top: 2px;
     border-radius: 4px;
