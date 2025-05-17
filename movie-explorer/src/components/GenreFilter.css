@@ -26,7 +26,7 @@
 }
 
 .select-trigger:focus {
-    outline: 2px splid #007bff;
+    outline: 2px solid #09ff00;
 }
 
 .selected-text {
@@ -51,7 +51,7 @@
     top: 100%;  /*??*/
     left: 0;
     right: 0;
-    background-color: #292d46;
+    background-color: rgb(204, 239, 133);
     border: 1px solid #e32323;
     border-top: none;
     margin-top: 2px;

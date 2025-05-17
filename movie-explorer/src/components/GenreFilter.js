@@ -47,8 +47,8 @@ function GenreFilter({ genres, onFilter, selectedGenre }) {
     return (
         <div className="genre-filter">
             <h2>Filter by Genre</h2>
-            <div className="custom-select" ref={dropdownRef}>
-                <div
+            <div className={`custom-select ${isOpen ?'open' : ''}`} ref={dropdownRef}>
+                <div            
                     className="select-trigger"
                     onClick={toggleDropdown}
                     onKeyDown={handleKeyDown}
