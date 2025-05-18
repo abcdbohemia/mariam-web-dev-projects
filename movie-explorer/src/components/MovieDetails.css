@@ -88,3 +88,7 @@ color: #faf8f8;
     margin-bottom: 10px;
     color: #f6f2f2;
 }
+
+.details-content a {
+    color: rgb(67, 252, 193);
+}
