@@ -22,7 +22,7 @@
 }
 
 .search-bar button[type="submit"] {
-    background-color: rgb(50, 148, 205);
+    background-color: rgb(234, 115, 121);
     color: white;
     border: none;
     padding: 10px 15px;
@@ -33,8 +33,8 @@
 }
 
 .search-bar button[type="submit"]:hover {
-    background-color:rgb(211, 239, 154);
-    color: rgb(50, 148, 205)
+    background-color:rgb(244, 78, 89);
+    color: rgb(255, 253, 253)
 }
 
 .search-bar button[type="submit"]:focus {

@@ -62,7 +62,7 @@ function App() {
       return;
     }
     // Use /discover/movie as the base endpoint to return list of movies ranked by popularity
-    let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=true&include_video=false&language=en-US&sort_by=popularity.desc&page=${page}`; //using the newpage value here as well
+    let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&page=${page}`; //using the newpage value here as well
     try {
       // Add genre filter if provided
       if (selectedGenre) { // curly braces optional for single statement if blocks 
@@ -92,7 +92,7 @@ function App() {
        }
        const data = await response.json();
        setMovies(data.results || []);
-       setTotalPages(data.total_pages || 1);
+       setTotalPages(Math.min(data.total_pages || 1, 500)); //Limit total pages to 500
        setCurrentPage(page);
     } catch (err) {
       setError('Failed to fetch movies.'); // we re-render the app component, and if(error) block is executed

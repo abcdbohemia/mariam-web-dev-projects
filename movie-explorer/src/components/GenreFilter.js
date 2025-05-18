@@ -7,8 +7,8 @@ function GenreFilter({ genres, onFilter, selectedGenre }) {
 
     // Find the selected genre's name for display
     const selectedGenreName = selectedGenre 
-        ? genres.find((genre) => genre.id === selectedGenre)?.name || 'All Genres'
-        : 'All Genres';
+        ? genres.find((genre) => genre.id === selectedGenre)?.name || 'Select Genre'
+        : 'Select Genre';
 
     // Toggle dropdown visibility
     const toggleDropdown = () => {
@@ -46,7 +46,6 @@ function GenreFilter({ genres, onFilter, selectedGenre }) {
 
     return (
         <div className="genre-filter">
-            <h2>Filter by Genre</h2>
             <div className={`custom-select ${isOpen ?'open' : ''}`} ref={dropdownRef}>
                 <div            
                     className="select-trigger"
