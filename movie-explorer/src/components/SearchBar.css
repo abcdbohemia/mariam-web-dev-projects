@@ -7,7 +7,7 @@
 }
 
 .search-bar input[type="text"] {
-    flex-grow: 1;
+    flex-grow: 1; /*For direct child of flex container determines how much the flex item will grow relative to other flex items in the containewr when there is extra space available along the main axis*/
     padding: 10px;
     border: 1px solid #2f9dd4;
     border-radius: 5px;
@@ -40,4 +40,15 @@
 .search-bar button[type="submit"]:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/*Responsive adjustments*/
+@media (max-width: 768px) {
+    .search-bar {
+        flex-direction: column; /*stack input and button*/
+        margin-left: 30px;
+    }
+    .search-bar button[type="submit"] {
+        width: 100%;
+    }
 }

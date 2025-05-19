@@ -45,7 +45,6 @@ function GenreFilter({ genres, onFilter, selectedGenre }) {
     };
 
     return (
-        <div className="genre-filter">
             <div className={`custom-select ${isOpen ?'open' : ''}`} ref={dropdownRef}>
                 <div            
                     className="select-trigger"
@@ -97,7 +96,6 @@ function GenreFilter({ genres, onFilter, selectedGenre }) {
                     </ul>
                 )}
             </div>
-        </div>
     );
 }
 
