@@ -30,7 +30,7 @@
 .pagination button.active {
     background-color: rgb(211, 239, 154);
     color: rgb(0, 0, 0);
-    border-color: #007bff;
+    border-color: #bdec6b;
 }
 
 .pagination span {
