@@ -2,9 +2,8 @@
     position: relative;
     width: 100%;
     margin-bottom: 15px;
-    display: flex;
     align-items: center;
-    background-color: yellow;
+    max-width: 400px;
 }
 
 .select-trigger {
