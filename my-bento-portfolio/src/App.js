@@ -6,7 +6,7 @@ function App() {
     <div className="portfolio-container">
       {/* Box 1: Hero Introduction*/}
       <header className="bento-box hero-intro">
-        <img src="/images/image0.jpeg" alt="Mariam Chkadua" className="profile-photo" /> {/* Placeholder */}
+        <img src="/images/mariam-face.png" alt="Mariam Chkadua" className="profile-photo" /> {/* Placeholder */}
         <h1>Mariam Chkadua, Front-End Developer</h1>
         <p>Crafting engaging and responsive web experiences with React and modern CSS.</p>
         <a href="/your-resume.pdf" download className="btn">Download Resume</a> {/*Placeholder*/}
@@ -26,7 +26,7 @@ function App() {
       </section>
 
       {/* Box 3: About Me /Quick Bio */}
-      <section className="bento-box-about-me">
+      <section className="bento-box about-me">
         <h2>About Me</h2>
         <p>My journey into web development becan with Codecasemy, sparking a passion for intuitive user interfaces.</p>
         <p>Based in Telavi, Georgia, open to remote opportunities.</p>
@@ -37,7 +37,7 @@ function App() {
         <img src="images/movie-explorer.png" alt="Movie Explorer" className="project-screenshot" /> {/*Placeholder */}
         <h3>Movie Explorer</h3>
         <p>Discover movies and explore details using the TMFB API.</p>
-        <p ClassName="project-tech">Tech: React, REST API, Styled Components</p>
+        <p className="project-tech">Tech: React, REST API, Styled Components</p>
         <div className="project-links">
         <a href="https://your-movie-explorer-demo.netlify.app" target="_blank" rel="nooper noreferrer" className="btn">Live Demo</a>
         <a href="https://github.com/abcdbohemia/mariam-web-dev-projects/tree/main/movie-explorer" target="_blank" rel="noopener noreferrer" className="btn">GitHub Repo</a>
@@ -56,14 +56,15 @@ function App() {
         </div>
       </section>
 
-      {/* Box 6: Featured Project: Poledex*/}
+      {/* Box 6: Featured Project: Pokedex*/}
       <section className="bento-box project-card pokedex">
         <img src="images/dynamic-pokedex.png" alt="Pokedex" className="project-screenshot" /> {/*Placeholder*/}
         <h3>Interactive Pokedex</h3>
         <p>Explore Pokemon data with search and filter functionality.</p>
         <p className="project-tech">Tech: React, PokeAPI</p>
         <div className="project-links">
-          <a href="http://your-pokedex-demo.netlify.app" target="_blank" rel="noopener noreferrer" className="btn">GitHub Repo</a>
+          <a href="http://your-pokedex-demo.netlify.app" target="_blank" rel="noopener noreferrer" className="btn">Live Demo</a>
+          <a href="https://github.com/abcdbohemia/other-projects/tree/main/dynamic-pokedex" target="_blank" rel="noopener noreferrer" className="btn">GitHub Repo</a>
         </div>
       </section>
 

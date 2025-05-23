@@ -1,38 +1,267 @@
-.App {
+/* Basic Resets & Global Styles */
+:root {
+  --primary-bg: #bfd0ea; /* Light blue background */
+  --secondary-bg: #b7f1af;  /* Light red for boxes*/
+  --text-color: #333;
+  --accent-color: #007bff; /*Blue Accent*/
+  --border-color: #abed8d; /* Light green border */
+  --box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px 0px;
+  --border-radius: 12px; /* Rounded corners */
+  --gap-size: 20px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Robot', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-srgb-rendering: grayscale;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Main Portfolio Container (CSS Grid)*/
+.portfolio-container {
+  display: grid;
+  /* Define 4 equal columns for desktop */
+  grid-template-columns: repeat(4, 1fr);
+  /*Adjust rows based on content needs- auto will size them*/
+  grid-template-rows: auto auto auto auto;
+  gap: var(--gap-size); /*Gap between all boxes */
+  max-width: 1200px; /*Max width of your portfolio*/
+  margin: 40px auto; /*Center the portfolio conteiner*/
+  padding: 0 var(--gap-size); /*Add some padding on the sides*/
+}
+
+/* Styles for all Bento Boxes */
+.bento-box{
+  background-color: var(--secondary-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--gap-size);
+  display: flex; /* Using flexbox for content alignment within boxews*/
+  flex-direction: column;
+  justify-content: center; /* Center content versically*/
+  align-items: flex-start; /* overriding default align-items: stretch*/
+  box-sizing: border-box; /* includes padding in elements total width and height*/
+  overflow: hidden; /*Hide overflow for images etc*/
+}
+
+/*Specific Box Sizing & Placement (Desktop - based on our sketch) */
+
+.hero-intro {
+  grid-column: 1/ span 2; /*spans column 1 & 2 */
+  grid-row: 1/ span 2;
+  align-items: center;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.hero-intro .profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover; /* ??? */
+  margin-bottom: 15px;
+  border: 4px solid var(--accent-color);
+}
+.hero-intro h1 {
+  margin-top: 0;
+  font-size: 2.2em;
+}
+.hero-intro p {
+  font-size: 1.1em;
+  max-width: 80%;
+  margin-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.skills-section {
+  grid-column: 3 / span 2; /* Spans column 3 & 4*/
+  grid-row: 1 / span 1;
+}
+.skills-grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+.skills-grid span {
+  background-color: var(--primary-bg);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9em;
+  white-space: nowrap; /* what is this ??*/
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.about-me {
+  grid-column: 3 /span 2; /* Spans columns 3 & 4*/
+  grid-row: 2 / span 1;
+}
+.about-me p {
+  margin-bottom: 10px;
+}
+
+.project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between; /* ???*/
+}
+.project-card .project-screenshot {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+.project-card h3 {
+margin-top: 0;
+margin-bottom: 8px;
+font-size: 1.5em;
+}
+.project-card p {
+  font-size: 0.95em;
+  margin-bottom: 10px;
+}
+.project-card .project-tech {
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 15px;
+}
+.project-card .project-links {
+  display: flex;
+  gap: 10px;
+  margin-top: auto; /* Pushes the link container to the bottom of the flex column*/
+}
+
+.movie-explorer {
+  grid-column: 1 / span 2;
+  grid-row: 3 / span 2; /* spans rows 3 & 4 */
+
+}
+
+.weather-app {
+  grid-column: 3 / span 1;
+  grid-row: 3 / span 1;
+}
+
+.pokedex {
+  grid-column: 4 / span 1;
+  grid-row: 3 / span 1;
+}
+
+.contact-info {
+  grid-column: 3 / span 2;
+  grid-row: 4 / span 1;
+}
+.contact-info p {
+  margin-bottom: 5px;
+}
+.contact-info .social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;     /* ??? */
+  margin-top: 10px;
+}
+.contact-info .social-links a {
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+.contact-info .social-links a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  display: inline-block;  /* ???? */
+  padding: 10px 15px;
+  background-color: var(--accent-color);
   color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  font-size: 0.9em;
+  text-align: center;
+}
+.btn:hover {
+  background-color: #0056b3;
 }
 
-.App-link {
-  color: #61dafb;
+/* Responsive Design (Media Queries) --*/
+
+/* Tablet View (e.g., 768px and below) */
+@media (max-width: 992px) {
+  .portfolio-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablet */
+    margin: 30px auto;
+    padding: 0 15px;
+  }
+  /* Reset default span for all boxes and then define new ones */
+  .bento-box {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+  /* Tablet-specific placement */
+  .hero-intro {
+    grid-column: 1 / span 2 !important;
+    grid-row: 1 !important;
+  }
+  .skills-section {
+    grid-column: 1 / span 1 !important;
+    grid-row: 2 !important;
+  }
+  .about-me {
+    grid-column: 2 / span 1 !important;
+    grid-row: 2;
+  }
+  .movie-explorer {
+    grid-column: 1 / span 2 !important;
+    grid-row: 3 !important;
+  }
+  .weather-app {
+    grid-column: 1 / span 1 !important;
+    grid-row: 4 !important;
+  }
+  .pokedex {
+    grid-column: 2 / span 1 !important;
+    grid-row: 4 !important;
+  }
+  .contact-info {
+    grid-column: 1 / span 2 !important;
+    grid-row: 5 !important;
+  }
+  /*Adjust font sizes for smaller screens */
+  .hero-intro h1 {
+    font-size: 1.8em;
+  }
+  .hero-intro p {
+    font-size: 1em;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 767px) {
+  .portfolio-container {
+    grid-template-columns: 1fr !important;
+    margin: 20px auto;
+    padding: 0 10px;
   }
-  to {
-    transform: rotate(360deg);
+  .bento-box {
+    grid-column: 1 / span 1 !important;
+    grid-row: auto !important;
+    padding: 20px;
   }
+  .hero-intro h1 {
+    font-size: 1.6em;
+  }
+  .hero-intro p {
+    font-size: 0.9em;
+  }
+  .project-card .project-screenshot {
+    height: 150px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
