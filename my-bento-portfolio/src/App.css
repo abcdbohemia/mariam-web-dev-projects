@@ -2,10 +2,10 @@
 :root {
   --primary-bg: #bfd0ea; /* Light blue background */
   --secondary-bg: #b7f1af;  /* Light red for boxes*/
-  --text-color: #333;
+  --text-color: #333; 
   --accent-color: #007bff; /*Blue Accent*/
-  --border-color: #abed8d; /* Light green border */
-  --box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px 0px;
+  --border: 5px solid rgba(128, 188, 111, 0.737); /* pink green border */
+  --box-shadow: rgba(63, 199, 233, 0.904) 0px 2px 2px 0px;
   --border-radius: 12px; /* Rounded corners */
   --gap-size: 20px;
 }
@@ -37,6 +37,7 @@ body {
 .bento-box{
   background-color: var(--secondary-bg);
   border-radius: var(--border-radius);
+  border: var(--border);
   box-shadow: var(--box-shadow);
   padding: var(--gap-size);
   display: flex; /* Using flexbox for content alignment within boxews*/
