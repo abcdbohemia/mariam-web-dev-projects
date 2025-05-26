@@ -39,7 +39,7 @@ function App() {
         <p>Discover movies by name or genre, view detailed information via the TMBD API, and browse over 500 pages of listings.</p>
         <p className="project-tech">Tech: React, Fetch API, Styled Components, TMDB API</p>
         <div className="project-links">
-        <a href="https://your-movie-explorer-demo.netlify.app" target="_blank" rel="nooper noreferrer" className="btn">Live Demo</a>
+        <a href="https://movie-explorer-mc.netlify.app/" target="_blank" rel="nooper noreferrer" className="btn">Live Demo</a>
         <a href="https://github.com/abcdbohemia/mariam-web-dev-projects/tree/main/movie-explorer" target="_blank" rel="noopener noreferrer" className="btn">GitHub Repo</a>
         </div>
       </section>
@@ -51,7 +51,7 @@ function App() {
         <p>Get current weather conditions and a 7-day forecast for any city worldwide.</p>
         <p className="project-tech">Tech: React, Fetch API, OpenWeather API</p>
         <div className="project-links">
-          <a href="https://your-weather-app-demo.netlify.app" target="_blank" rel="noopener noreferrer" className="btn">Live Demo</a>
+          <a href="https://abcdbohemia-weather-app.netlify.app/" target="_blank" rel="noopener noreferrer" className="btn">Live Demo</a>
           <a href="https://github.com/abcdbohemia/mariam-web-dev-projects/tree/main/weather-app" target="_blank" rel="noopener noreferrer" className="btn">GitHub Repo</a>
         </div>
       </section>
