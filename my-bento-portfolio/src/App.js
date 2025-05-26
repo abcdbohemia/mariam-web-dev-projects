@@ -63,7 +63,7 @@ function App() {
         <p>Fetches Pokemon data via API; flip cards to reveal detailed stats.</p>
         <p className="project-tech">Tech: React, Fetch API, PokeAPI</p>
         <div className="project-links">
-          <a href="http://your-pokedex-demo.netlify.app" target="_blank" rel="noopener noreferrer" className="btn">Live Demo</a>
+          <a href="https://pokedex-api-mc.netlify.app" target="_blank" rel="noopener noreferrer" className="btn">Live Demo</a>
           <a href="https://github.com/abcdbohemia/other-projects/tree/main/dynamic-pokedex" target="_blank" rel="noopener noreferrer" className="btn">GitHub Repo</a>
         </div>
       </section>
