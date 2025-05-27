@@ -7,9 +7,33 @@
   padding: 20px;
   background-color: rgb(39, 64, 100);
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 h1 {
   color: rgb(255, 255, 255);
   margin-bottom: 20px;
+  font-size: 2.5em; /*Default for larger screens*/
+  text-align: center;
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 768px) {
+  .app {
+    padding: 15px; /* Reduce padding for smaller screens*/
+  }
+  h1 {
+    font-size: 2em; /* Smaller font size for h1*/
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
 }

@@ -2,7 +2,7 @@
     display: flex;
     gap: 10px;
     margin-bottom: 15px;
-    width: 100%;
+    width: 90%;
     max-width: 400px;
 }
 
@@ -42,3 +42,8 @@
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
+@media (max-width: 372px) {
+    .search-bar {
+        flex-direction: column;
+    }
+}
