@@ -60,7 +60,7 @@ function App() {
       <section className="bento-box project-card pokedex">
         <img src="images/dynamic-pokedex.png" alt="Pokedex" className="project-screenshot" /> {/*Placeholder*/}
         <h3>Interactive Pokedex</h3>
-        <p>Fetches Pokemon data via API; flip cards to reveal detailed stats.</p>
+        <p>Fetch Pokemon cards from an API, then click any card to flip it and reveal details.</p>
         <p className="project-tech">Tech: Fetch API, PokeAPI</p>
         <div className="project-links">
           <a href="https://pokedex-api-mc.netlify.app" target="_blank" rel="noopener noreferrer" className="btn">Live Demo</a>
