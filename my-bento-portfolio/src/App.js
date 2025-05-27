@@ -61,7 +61,7 @@ function App() {
         <img src="images/dynamic-pokedex.png" alt="Pokedex" className="project-screenshot" /> {/*Placeholder*/}
         <h3>Interactive Pokedex</h3>
         <p>Fetches Pokemon data via API; flip cards to reveal detailed stats.</p>
-        <p className="project-tech">Tech: React, Fetch API, PokeAPI</p>
+        <p className="project-tech">Tech: Fetch API, PokeAPI</p>
         <div className="project-links">
           <a href="https://pokedex-api-mc.netlify.app" target="_blank" rel="noopener noreferrer" className="btn">Live Demo</a>
           <a href="https://github.com/abcdbohemia/other-projects/tree/main/dynamic-pokedex" target="_blank" rel="noopener noreferrer" className="btn">GitHub Repo</a>
