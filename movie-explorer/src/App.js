@@ -106,7 +106,7 @@ function App() {
   useEffect(() => {
     fetchMovies(1); //fatch movies is called as a side effect after the conmponent has rendered and the browser has updates the DOM
     fetchGenres(); //call fetchGenre when the component mounts
-  }, [apiKey, selectedGenre, searchTerm]); //dependency array indicates that when any of the items change fetchMovies(1) will rerun
+  }, [apiKey, selectedGenre, searchTerm]); //dependency array indicates that when any of the items change fetchMovies(1) will rerun //eslint-disable-next-line react-hooks/exhastive-deps
 
   const handleSearch = (query) => {
     setSearchTerm(query);
