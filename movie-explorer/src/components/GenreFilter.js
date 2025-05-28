@@ -54,12 +54,13 @@ function GenreFilter({ genres, onFilter, selectedGenre }) {
                     role="combobox" // For screen readers
                     aria-expanded={isOpen}
                     aria-haspopup="listbox"
+                    aria-controls="genre-options-list"
                 >
                     <span className="selected-text">{selectedGenreName}</span>
                     <span className="arrow" />
                 </div>
                 {isOpen && (
-                    <ul className="dropdown-menu" role="listbox">
+                    <ul className="dropdown-menu" role="listbox" id="genre-options-list">
                         <li
                             className={`dropdown-item ${!selectedGenre ? 'selected' : ''}`}
                             onClick={() => handleSelect('')}
