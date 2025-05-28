@@ -27,8 +27,8 @@
     max-width: 900px;
     position: relative;
     display: flex;
-    gap: 30px;
     flex-direction: column;
+    gap: 30px;
 }
 
 .movie-details::-webkit-scrollbar {
@@ -74,7 +74,7 @@
     width: 100%;
     max-width: 300px;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     flex-shrink: 0;
     height: auto;
 }
@@ -98,6 +98,7 @@ font-size: 2.2rem;
 font-weight: bold;
 margin-bottom: 10px;
 color: #faf8f8;
+margin-top: 0;
 }
 
 .details-content .tagline {
