@@ -43,6 +43,9 @@ function MovieDetails({ movieId, onClose }) {
     if (!movieId) {
         return null; // Don't desplay anything if no movie is selected
     }
+    if (loading) {
+        return <p>Loading movie details...</p> //Explicitly use the loading state
+    }
     if (error) {
         return <p>{error}</p>;
     }
