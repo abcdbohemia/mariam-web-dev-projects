@@ -43,13 +43,18 @@
 }
 .movie-details::-webkit-scrollbar-thumb {
     background-color: rgb(28, 68, 114); 
-    border: 3px solid rgb(28, 68, 114); 
+    border: 3px solid rgb(28, 68, 114);
+        border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0p; 
 }
 
 
 @media (min-width: 768px) {
     .movie-details {
         flex-direction: row;
+        overflow-x: hidden;
     }
 }
 .close-button {
@@ -115,4 +120,11 @@ margin-top: 0;
 
 .details-content a {
     color: rgb(67, 252, 193);
+    padding-bottom: 20px;
+}
+
+@media(min-width: 768px) {
+    .movie-details img.movie-poster {
+        margin-bottom: 0;
+    }
 }
