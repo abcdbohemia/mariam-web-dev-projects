@@ -3,9 +3,8 @@
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 25px;
     width: 90%;
-    max-width: 1200px;
-    margin-bottom: 20px auto;
-    align-items: center;
+    max-width: 1800px;
+    margin-bottom: 0 auto 20px auto;
 }
 
 .movie-item {
