@@ -38,23 +38,7 @@ function App() {
     }
   }, [apiKey]); //Changed: Added apiKey to fetchGenre's dependency array
 
-  // Fetch keyword ID for the search term 
-  //CHANGED: Wrapped fetchKeywordId in useCallback
-  const fetchKeywordId = useCallback(async (searchTerm) => {
-    const keywordUrl =`https://api.themoviedb.org/3/search/keyword?api_key=${apiKey}&query=${encodeURIComponent(searchTerm)}&page=1`;
-    try {
-      const response = await fetch(keywordUrl);
-      if (!response.ok) {
-        throw new Error(`Keyword search failed: ${response.status}`);
-      }
-      const data = await response.json(); 
-      //Return the first keyword ID if available, otherwise null
-      return data.results[0]?.id || null; // results is an array of objects, easch object has an id and name, we are extracting the id
-    } catch (error) {
-      console.error('Error fetching keyword:', error);
-      return null;
-    }
-  }, [apiKey]); //CHANGED: Added apiKey to fetchKeywordId's dependency array
+  
 
 //CHANGED: Wrapped fetchMovies in useCallback
   const fetchMovies = useCallback(async (page = 1) => { //argument is newpage from the pagination component
@@ -65,47 +49,38 @@ function App() {
       setLoading(false);
       return;
     }
-    // Use /discover/movie as the base endpoint to return list of movies ranked by popularity
-    let apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc&page=${page}`; //using the newpage value here as well
-    try {
-      // Add genre filter if provided
-      if (selectedGenre) { // curly braces optional for single statement if blocks 
-        apiUrl += `&with_genres=${selectedGenre}`;
-      }
-      // Add keyword filter if searchTerm is provided
-      if (searchTerm) {
-        const keywordId = await fetchKeywordId(searchTerm);
-        if (keywordId) {
-          apiUrl += `&with_keywords=${keywordId}` ;
-        } else {
-          // No keyword found; show error or return empty results
-        setError(`No keyword found for search term: "${searchTerm}". Try a different term.`);
-        setMovies([]);
-        setTotalPages(1);
-        setLoading(false);
-        return;
-        }
-       }
-       // If no filters are applied, use /movie/popular
-       if (!searchTerm && !selectedGenre) {
-        apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${page}`;
-       }
-       const response = await fetch(apiUrl);
-       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-       }
-       const data = await response.json();
-       setMovies(data.results || []);
-       setTotalPages(Math.min(data.total_pages || 1, 500)); //Limit total pages to 500
-       setCurrentPage(page);
-    } catch (err) {
-      setError('Failed to fetch movies.'); // we re-render the app component, and if(error) block is executed
-      console.error('Error fetching movies:', err ); //err here equals the message of the new error that was thrown above
-      setTotalPages(1);
-    } finally { // designed to execute no matter what happens? right?
-      setLoading(false);
+
+    let apiUrl; //Declare apiUrl here to be set conditionally
+
+    if (searchTerm) {
+      //CHANGED: Use /search/movie for title search
+      apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(searchTerm)}&include_adult=false&language=en-US&page=${page}`;
+    } else if (selectedGenre) {
+      //Use /discover/movie with genre if only genre is selected
+      apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${selectedGenre}`;
+    } else {
+      //Default to movie lists/popular if no search term or genre is selected
+      apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${page}`;
     }
-  }, [apiKey, selectedGenre, searchTerm, fetchKeywordId]); //CHANGED: Added fetchKeywordId to fetchMovies's dependency array
+      try {
+        const response = await fetch(apiUrl);
+        if(!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setMovies(data.results || []);
+
+        setTotalPages(Math.min(data.total_pages || 1, 500)); //Limit total pages to 500
+        setCurrentPage(page);
+      } catch (err) {
+        setError('Failed to fetch movies.');
+        console.error('Error fetching movies:', err);
+        setTotalPages(1);
+      } finally {
+        setLoading(false);
+      }
+    }, [apiKey, selectedGenre, searchTerm]);
+
 
   //CHANGED: Modified useEffect and its dependency array
   useEffect(() => {
