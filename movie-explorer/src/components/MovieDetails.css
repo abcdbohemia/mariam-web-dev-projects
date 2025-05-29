@@ -55,14 +55,13 @@
 }
 .close-button {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: env(safe-area-inset-top, 0px);
+    right: env(safe-area-inset-right, 0px);
     background: none;
     border: none;
     font-size: 30px;
     cursor: pointer;
     color: #ffffff;
-    align-content: center;
     text-align: center;
     transition: color 0.2s ease-in-out;
 }
