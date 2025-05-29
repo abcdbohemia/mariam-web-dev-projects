@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import SearchBar from './components/SearchBar';
 import MovieList from './components/MovieList';
 import GenreFilter from './components/GenreFilter';
@@ -19,7 +19,8 @@ function App() {
   const apiKey = process.env.REACT_APP_MOVIE_EXPLORER_API_KEY; // Access the api API key from .env.local
   
   // Fetch movie genres from the API
-  const fetchGenres = async () => {
+  //CHANGED: Wrapped fetchGenres in useCallback
+  const fetchGenres = useCallback(async () => {
     if (!apiKey) {
       console.error('API key not found. Please ensure REACT_APP_MOVIE_EXPLORER_API_KEY is set in .env.local and the server is restarted.');
     return;
@@ -35,9 +36,11 @@ function App() {
     } catch (error) {
       console.error('Error fetching genres:', error);
     }
-  };
+  }, [apiKey]); //Changed: Added apiKey to fetchGenre's dependency array
+
   // Fetch keyword ID for the search term 
-  const fetchKeywordId = async (searchTerm) => {
+  //CHANGED: Wrapped fetchKeywordId in useCallback
+  const fetchKeywordId = useCallback(async (searchTerm) => {
     const keywordUrl =`https://api.themoviedb.org/3/search/keyword?api_key=${apiKey}&query=${encodeURIComponent(searchTerm)}&page=1`;
     try {
       const response = await fetch(keywordUrl);
@@ -51,9 +54,10 @@ function App() {
       console.error('Error fetching keyword:', error);
       return null;
     }
-  };
+  }, [apiKey]); //CHANGED: Added apiKey to fetchKeywordId's dependency array
 
-  const fetchMovies = async (page = 1) => { //argument is newpage from the pagination component
+//CHANGED: Wrapped fetchMovies in useCallback
+  const fetchMovies = useCallback(async (page = 1) => { //argument is newpage from the pagination component
     setLoading(true);
     setError(null);
     if(!apiKey) {
@@ -101,13 +105,14 @@ function App() {
     } finally { // designed to execute no matter what happens? right?
       setLoading(false);
     }
-  };
+  }, [apiKey, selectedGenre, searchTerm, fetchKeywordId]); //CHANGED: Added fetchKeywordId to fetchMovies's dependency array
 
+  //CHANGED: Modified useEffect and its dependency array
   useEffect(() => {
     fetchMovies(1); //fatch movies is called as a side effect after the conmponent has rendered and the browser has updates the DOM
     fetchGenres(); //call fetchGenre when the component mounts
-  }, [apiKey, selectedGenre, searchTerm]); //dependency array indicates that when any of the items change fetchMovies(1) will rerun //eslint-disable-next-line react-hooks/exhastive-deps
-
+  }, [apiKey, selectedGenre, searchTerm, fetchMovies, fetchGenres]); //dependency array indicates that when any of the items change fetchMovies(1) will rerun 
+  //CHANGED: Added fetchMovies and fetchGenres to the useEffect fependency array
   const handleSearch = (query) => {
     setSearchTerm(query);
     setCurrentPage(1);
