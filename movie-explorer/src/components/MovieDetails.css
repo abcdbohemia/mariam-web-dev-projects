@@ -125,3 +125,12 @@ margin-top: 0;
         margin-bottom: 0;
     }
 }
+ @media only screen
+ and (device-width: 375px)
+ and (device-height: 812px)
+ and (-webkit-device-pixel-ratio: 3)
+ {
+    .close-button {
+        padding-right: 10px;
+    }
+ }
