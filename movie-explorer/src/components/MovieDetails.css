@@ -24,8 +24,6 @@
     overflow-y:auto;
     max-height: 70vh;
     padding: 30px;
-    padding-top: calc(30px + env(safe-area-inset-top, 20px));
-    padding-right: calc(30px + env(safe-area-inset-top, 20px));
     max-width: 900px;
     position: relative;
     display: flex;
@@ -57,8 +55,8 @@
 }
 .close-button {
     position: absolute;
-    top: env(safe-area-inset-top, 0px);
-    right: env(safe-area-inset-right, 0px);
+    top: 0px;
+    right: 0px;
     background: none;
     border: none;
     font-size: 30px;
