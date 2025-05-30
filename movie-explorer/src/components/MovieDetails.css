@@ -131,6 +131,6 @@ margin-top: 0;
  and (-webkit-device-pixel-ratio: 3)
  {
     .close-button {
-        padding-right: 10px;
+        padding-right: 0px;
     }
  }
