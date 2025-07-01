@@ -20,8 +20,10 @@ function App() {
           <span>React (with Hooks)</span>
           <span>HTML5</span>
           <span>CSS (Flexbox, Grid, Responsive Design)</span>
-          <span>Git & GitHub</span>
+          <span>React Router DOM</span>
+          <apan>React/TanStack Query</apan>
           <span>RESTful APIs</span>    {/* ???? */}
+           <span>Git & GitHub</span>
         </div>
       </section>
 
