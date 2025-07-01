@@ -21,9 +21,9 @@ function App() {
           <span>HTML5</span>
           <span>CSS (Flexbox, Grid, Responsive Design)</span>
           <span>React Router DOM</span>
-          <apan>React/TanStack Query</apan>
+          <span>React/TanStack Query</span>
           <span>RESTful APIs</span>    {/* ???? */}
-           <span>Git & GitHub</span>
+          <span>Git & GitHub</span>
         </div>
       </section>
 
