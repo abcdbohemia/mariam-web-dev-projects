@@ -24,6 +24,7 @@ function App() {
           <span>React/TanStack Query</span>
           <span>RESTful APIs</span>    {/* ???? */}
           <span>Git & GitHub</span>
+          <span>Netlify</span>
         </div>
       </section>
 
