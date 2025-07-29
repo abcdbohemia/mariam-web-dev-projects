@@ -1,0 +1,12 @@
+{
+    "transactions": [],
+    "categories": [
+        { "id": "inc-1", "name": "Salary", "type": "income" },
+        { "id": "inc-2", "name": "Freelance", "type": "income" },
+        { "id": "exp-1", "name": "Food", "type": "expense" },
+        { "id": "exp-2", "name": "Rent", "type": "expense" },
+        { "id": "exp-3", "name": "Transport", "type": "expense" },
+        { "id": "exp-4", "name": "Entertainment", "type": "expense" },
+        { "id": "exp-5", "name": "Utilities", "type": "expense" }
+    ]
+}
