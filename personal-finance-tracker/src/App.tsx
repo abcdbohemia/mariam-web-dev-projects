@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+
+import { Link, Route, Routes } from 'react-router-dom';
+import TransactionsPage from './pages/TransactionsPage.tsx';
+import SummaryPage from './pages/SummaryPage.tsx';
+import HomePage from './pages/HomePage.tsx';
+import AddTransactionPage from './pages/AddTransactionPage';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app-container">
+      <nav className="navbar">
+        <div className="navbar-content">
+          <Link to="/" className="navbar-brand">
+          Finance Tracker
+          </Link>
+          <ul className="navbar-links">
+            <li>
+              <Link to="/" className="navbar-link">
+              Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/transactions" className="navbar-link">
+              Transactions
+              </Link>
+            </li>
+            <li>
+              <Link to="/summary" className="navbar-link">
+              Summary
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/transactions" element={<TransactionsPage />} />
+          <Route path="/add" element={<AddTransactionPage />} />
+          <Route path="/summary" element={<SummaryPage />} />
+        </Routes>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
