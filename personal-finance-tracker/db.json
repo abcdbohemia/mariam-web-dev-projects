@@ -1,15 +1,5 @@
 {
-  "transactions": [
-    {
-      "id": "1754379781511",
-      "description": "salary",
-      "amount": 100,
-      "type": "income",
-      "categoryId": "inc-1",
-      "date": "2025-08-10",
-      "createdAt": "2025-08-05T07:43:01.511Z"
-    }
-  ],
+  "transactions": [],
   "categories": [
     {
       "id": "inc-1",

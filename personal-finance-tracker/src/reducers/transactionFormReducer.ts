@@ -1,5 +1,5 @@
 // src/reducers/transactionFormReducer.ts
-import type {TransactionType } from '../types/index.ts';
+import type { TransactionType } from '../types/index.ts';
 
 //1. Define the State Shape for your form
 export interface TransactionFormState {
@@ -18,7 +18,8 @@ export interface TransactionFormState {
 
 //2. Define the Action Types
 export type TransactionFormAction = 
-| { type: 'SET_FIELD'; field: keyof Omit<TransactionFormState, 'errors'>; value: string | TransactionType }
+| { type: 'SET_FIELD'; 
+    field: keyof Omit<TransactionFormState, 'errors'>; value: string | TransactionType }
 | { type: 'RESET_FORM' }
 | { type: 'SET_ERRORS'; errors: TransactionFormState['errors'] }; // If adding error handling
 
@@ -33,6 +34,8 @@ export const initialTransactionFormState: TransactionFormState = {
 };
 
 // 4. Create the Reducer Function
+// Takes the current form state and action, and returns
+// a new state based on what that action tells it to do.
 export function transactionFormReducer(
     state: TransactionFormState, 
     action: TransactionFormAction, ): TransactionFormState {
