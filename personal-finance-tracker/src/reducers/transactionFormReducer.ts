@@ -36,8 +36,8 @@ export const initialTransactionFormState: TransactionFormState = {
 // 4. Create the Reducer Function
 // Takes the current form state and action, and returns
 // a new state based on what that action tells it to do.
-export function transactionFormReducer(
-    state: TransactionFormState, 
+export function transactionFormReducer( 
+    state: TransactionFormState, //  typescript for argument types and return value
     action: TransactionFormAction, ): TransactionFormState {
         switch (action.type) {
             case 'SET_FIELD':
