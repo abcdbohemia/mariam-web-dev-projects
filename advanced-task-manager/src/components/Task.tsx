@@ -12,7 +12,7 @@ interface TaskProps {
 
 //Function to handle the DELETE request
 const deleteTask = async (taskId: number): Promise<void> => {
-    const res = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/tasks/${taskId}`, {
         method: 'DELETE',
     });
     if (!res.ok) {
@@ -22,7 +22,7 @@ const deleteTask = async (taskId: number): Promise<void> => {
 
 //Function to handle the PUT request (for updating)
 const updateTask= async (updatedTask: TaskType): Promise<void> => {
-    const res = await fetch(`http://localhost:3000/tasks/${updatedTask.id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/tasks/${updatedTask.id}`, {
        method: 'PUT',
        headers: {
         'Content-Type': 'application/json',

@@ -4,7 +4,7 @@ import type { NewTask } from '../types/task';
 import './CreateTaskForm.css';
 
 const postNewTask = async (newTask: NewTask): Promise<void> => {
-    const res = await fetch('http://localhost:3000/tasks', {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/tasks`, {
         method: 'POST', 
         headers: {
             'Content-Type': 'application/json',

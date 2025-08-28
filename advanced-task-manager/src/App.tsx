@@ -8,7 +8,7 @@ import './App.css';
 const fetchTasks = async (): Promise<TaskType[]> => {
   //I promise that the JSON data I get from the server 
   // will match the TaskType interface.
-  const res = await fetch('http://localhost:3000/tasks');
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/tasks`);
   if (!res.ok) {
     throw new Error('Network response was not ok');
   }
