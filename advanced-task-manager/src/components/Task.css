@@ -8,7 +8,7 @@
 
 
 .task-card {
-  background-color: #fff;
+  background-color: #e9f3f3;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -75,7 +75,7 @@
 }
 
 .edit-btn {
-  background-color: #f39c12; /* Orange */
+  background-color: #f0c277; /* Orange */
   color: white;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .delete-btn {
-  background-color: #e74c3c; /* Red */
+  background-color: #fc7c6e; /* Red */
   color: white;
 }
 
@@ -96,7 +96,7 @@
 Styles for the editing mode form */
 
 .editing-mode {
-    background-color: #66c39f;
+    background-color: #e4eeea;
     border: 2px solid #007bff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
