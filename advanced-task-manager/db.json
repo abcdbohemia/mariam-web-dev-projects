@@ -1,3 +1,12 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "id": "5ff4",
+      "title": "I love beijinho",
+      "description": "Beijinho is the best dog in the entire world. ",
+      "status": "completed",
+      "priority": "high",
+      "dueDate": "2025-11-11"
+    }
+  ]
 }
