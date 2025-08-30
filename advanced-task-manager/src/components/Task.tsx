@@ -1,8 +1,8 @@
 // src/components/Task.tsx
 import React, { useState } from 'react';
 import type { TaskType, NewTask } from '../types/task';
-import './Task.css';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import './Task.css';
 
 // Acts as a gatekeeper: formally and explicitly declare what the Task component expects to receive.
 interface TaskProps {
@@ -10,27 +10,26 @@ interface TaskProps {
 }
 //The TaskProps object must have a key named task, and the value of that key must be of type TaskType
 
-//Function to handle the DELETE request
-const deleteTask = async (taskId: number): Promise<void> => {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/tasks/${taskId}`, {
-        method: 'DELETE',
-    });
-    if (!res.ok) {
-        throw new Error('Failed to delete task');
+// Function to handle the DELETE request for Local Storage
+const deleteTaskFromLocalStorage = async (taskId: number): Promise<void> => {
+     const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+     const tasks: TaskType[] = JSON.parse(storedTasks);
+     const updatedTasks = tasks.filter(task => task.id !== taskId);
+     localStorage.setItem('tasks', JSON.stringify(updatedTasks));
     }
 };
 
-//Function to handle the PUT request (for updating)
-const updateTask= async (updatedTask: TaskType): Promise<void> => {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/tasks/${updatedTask.id}`, {
-       method: 'PUT',
-       headers: {
-        'Content-Type': 'application/json',
-       }, 
-       body: JSON.stringify(updatedTask),
-    });
-    if (!res.ok) {
-        throw new Error('Failed to update task');
+// Function to handle the PUT request (for updating) to Local Storage
+const updateTaskInLocalStorage = async (updatedTask: TaskType): Promise<void> => {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+        const tasks: TaskType[] = JSON.parse(storedTasks);
+        const taskIndex = tasks.findIndex(task => task.id === updatedTask.id);
+        if (taskIndex !== -1) {
+            tasks[taskIndex] = updatedTask;
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
     }
 };
 
@@ -62,7 +61,7 @@ export const Task: React.FC<TaskProps> = ({ task }) => {
     //Use useMutation for deleting a task
     //Aliasing, giving them more descriptive names
     const {mutate: deleteMutate, isPending: isDeleting } = useMutation({
-        mutationFn: deleteTask, 
+        mutationFn: deleteTaskFromLocalStorage, 
         onSuccess: () => {
             //Invalidate the 'tasks' query to refetch the list from the server
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
@@ -70,7 +69,7 @@ export const Task: React.FC<TaskProps> = ({ task }) => {
      });
 
      const {mutate: updateMutate, isPending: isUpdating } = useMutation({
-        mutationFn: updateTask, 
+        mutationFn: updateTaskInLocalStorage, 
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
             setIsEditing(false); //Exit editing mode on success

@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { NewTask } from '../types/task';
+import type { NewTask, TaskType } from '../types/task';
 import './CreateTaskForm.css';
 
-const postNewTask = async (newTask: NewTask): Promise<void> => {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/tasks`, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json',
-        }, 
-        body: JSON.stringify(newTask),
-    });
-    if (!res.ok) {
-        throw new Error('Failed to create new task');
-    }
+// This function saves the new task to Local Storage
+const saveTaskToLocalStorage = async (newTask: NewTask): Promise<void> => {
+  const storedTasks = localStorage.getItem('tasks');
+  const tasks: TaskType[] = storedTasks ? JSON.parse(storedTasks) : [];
+  tasks.push({ ...newTask, id: Date.now() });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
 export const CreateTaskForm: React.FC = () => {
     const queryClient = useQueryClient();
-    // Use the existing NewTask type for the form state 
     const [formData, setFormData] = useState<NewTask>({
         title: '',
         description: '',
@@ -29,7 +23,7 @@ export const CreateTaskForm: React.FC = () => {
     });
 
     const {mutate, isPending, isError, error } = useMutation({
-        mutationFn: postNewTask,
+        mutationFn: saveTaskToLocalStorage,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['tasks'] });
             //invalidate the cache ffor the useQuery hook that is in the App component, mark it as stale
